@@ -1,7 +1,40 @@
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/pos-system.jpg";
 import logo from "@/assets/cuephoria-logo.png";
+
+const useCountUp = (end: number, durationMs = 1200) => {
+  const [value, setValue] = useState(0);
+  const ref = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+    let frame: number;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0].isIntersecting) return;
+        const start = performance.now();
+        const animate = (now: number) => {
+          const elapsed = now - start;
+          const progress = Math.min(1, elapsed / durationMs);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          setValue(Math.round(end * eased));
+          if (progress < 1) frame = requestAnimationFrame(animate);
+        };
+        frame = requestAnimationFrame(animate);
+        observer.disconnect();
+      },
+      { threshold: 0.4 }
+    );
+    observer.observe(element);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
+  }, [end, durationMs]);
+  return { ref, value } as const;
+};
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -78,30 +111,35 @@ const Hero = () => {
           </div>
 
           <div className="grid grid-cols-3 md:grid-cols-6 gap-8 pt-12 max-w-5xl mx-auto">
-            <div className="text-center animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">6+</div>
+            {(() => { const c = useCountUp(6); return (
+            <div ref={c.ref} className="text-center animate-fade-in" style={{ animationDelay: "0.2s" }}>
+              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">{c.value}+</div>
               <div className="text-sm text-muted-foreground">Years Experience</div>
-            </div>
-            <div className="text-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
-              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">100%</div>
+            </div> )})()}
+            {(() => { const c = useCountUp(100); return (
+            <div ref={c.ref} className="text-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
+              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">{c.value}%</div>
               <div className="text-sm text-muted-foreground">Client Satisfaction</div>
-            </div>
+            </div> )})()}
             <div className="text-center animate-fade-in" style={{ animationDelay: "0.6s" }}>
               <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">24/7</div>
               <div className="text-sm text-muted-foreground">Support Available</div>
             </div>
-            <div className="text-center animate-fade-in" style={{ animationDelay: "0.8s" }}>
-              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">20+</div>
+            {(() => { const c = useCountUp(20); return (
+            <div ref={c.ref} className="text-center animate-fade-in" style={{ animationDelay: "0.8s" }}>
+              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">{c.value}+</div>
               <div className="text-sm text-muted-foreground">Deployments</div>
-            </div>
-            <div className="text-center animate-fade-in" style={{ animationDelay: "1s" }}>
-              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">50K+</div>
+            </div> )})()}
+            {(() => { const c = useCountUp(50); return (
+            <div ref={c.ref} className="text-center animate-fade-in" style={{ animationDelay: "1s" }}>
+              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">{c.value}K+</div>
               <div className="text-sm text-muted-foreground">Tx/day Capacity</div>
-            </div>
-            <div className="text-center animate-fade-in" style={{ animationDelay: "1.2s" }}>
-              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">10+</div>
+            </div> )})()}
+            {(() => { const c = useCountUp(10); return (
+            <div ref={c.ref} className="text-center animate-fade-in" style={{ animationDelay: "1.2s" }}>
+              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">{c.value}+</div>
               <div className="text-sm text-muted-foreground">Cities Served</div>
-            </div>
+            </div> )})()}
           </div>
         </div>
       </div>

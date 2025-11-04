@@ -1,4 +1,5 @@
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, ArrowRight } from "lucide-react";
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -30,6 +31,17 @@ const contactInfo = [
 ];
 
 const Contact = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const body = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage: ${message}`;
+    const wa = `https://wa.me/918667637565?text=${encodeURIComponent(body)}`;
+    window.open(wa, "_blank");
+  };
   return (
     <section id="contact" className="py-24 relative">
       {/* Background Elements */}
@@ -106,13 +118,15 @@ const Contact = () => {
             <Card className="card-gradient border-border/50 animate-fade-in" style={{ animationDelay: "0.2s" }}>
               <CardContent className="p-6">
                 <h3 className="text-2xl font-bold mb-6 text-foreground">Send Us a Message</h3>
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleSubmit}>
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">Name</label>
                     <input
                       type="text"
                       className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 text-foreground"
                       placeholder="Your name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </div>
                   <div>
@@ -121,6 +135,8 @@ const Contact = () => {
                       type="email"
                       className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 text-foreground"
                       placeholder="your@email.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                   <div>
@@ -129,6 +145,8 @@ const Contact = () => {
                       type="tel"
                       className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 text-foreground"
                       placeholder="+91 XXXXXXXXXX"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
                     />
                   </div>
                   <div>
@@ -137,14 +155,16 @@ const Contact = () => {
                       rows={4}
                       className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 text-foreground resize-none"
                       placeholder="Tell us about your project..."
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
                     />
                   </div>
                   <Button
                     type="submit"
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground group"
+                    className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground group shadow-[0_0_24px_rgba(140,60,255,0.35)]"
                   >
-                    Send Message
-                    <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    Send via WhatsApp
+                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </form>
               </CardContent>
