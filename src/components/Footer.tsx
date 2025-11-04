@@ -34,6 +34,17 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Resources */}
+          <div>
+            <h4 className="font-bold text-foreground mb-4">Resources</h4>
+            <ul className="space-y-2 text-muted-foreground text-sm">
+              <li><a href="/blog" className="hover:text-primary transition-colors">Blog</a></li>
+              <li><a href="#team" className="hover:text-primary transition-colors">Case Studies</a></li>
+              <li><a href="#contact" className="hover:text-primary transition-colors">Support</a></li>
+              <li><a href="#contact" className="hover:text-primary transition-colors">Documentation</a></li>
+            </ul>
+          </div>
+
           {/* Company */}
           <div>
             <h4 className="font-bold text-foreground mb-4">Company</h4>

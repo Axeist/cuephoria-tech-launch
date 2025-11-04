@@ -68,6 +68,7 @@ const Navigation = () => {
               Services
             </button>
             <a href="/pos" className="text-foreground hover:text-primary transition-colors">POS System</a>
+            <a href="/blog" className="text-foreground hover:text-primary transition-colors">Blog</a>
             <button onClick={() => goToHomeHash("team")} className="text-foreground hover:text-primary transition-colors">
               Team
             </button>
@@ -96,6 +97,9 @@ const Navigation = () => {
             </button>
             <a href="/pos" className="block w-full text-left text-foreground hover:text-primary transition-colors">
               POS System
+            </a>
+            <a href="/blog" className="block w-full text-left text-foreground hover:text-primary transition-colors">
+              Blog
             </a>
             <button onClick={() => goToHomeHash("team")} className="block w-full text-left text-foreground hover:text-primary transition-colors">
               Team
