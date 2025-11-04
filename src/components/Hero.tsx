@@ -54,29 +54,30 @@ const Hero = () => {
             <Button
               onClick={scrollToContact}
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground group animate-glow"
+              className="relative bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground group shadow-[0_0_24px_rgba(140,60,255,0.35)]"
             >
-              Start Your Journey
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <span className="relative z-10 flex items-center">Start Your Journey</span>
+              <ArrowRight className="ml-2 w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
               onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
               size="lg"
               variant="outline"
-              className="border-primary text-foreground hover:bg-primary/10"
+              className="relative border-primary/60 text-foreground hover:bg-primary/10 backdrop-blur supports-[backdrop-filter]:bg-background/40"
             >
-              Explore Services
+              <span className="flex items-center gap-2">Explore Services <ArrowRight className="w-4 h-4" /></span>
             </Button>
             <a
               href="/pos"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-primary-foreground font-semibold transition-all duration-300 shadow-lg hover:shadow-primary/50"
+              className="relative inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/50 text-foreground hover:text-primary-foreground transition-all duration-300 hover:shadow-[0_0_28px_rgba(140,60,255,0.45)]"
             >
-              Learn more about POS
-              <ArrowRight className="w-4 h-4" />
+              <span className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/15 via-secondary/15 to-primary/15 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <span className="relative">Learn more about POS</span>
+              <ArrowRight className="w-4 h-4 relative" />
             </a>
           </div>
 
-          <div className="grid grid-cols-3 gap-8 pt-12 max-w-2xl mx-auto">
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-8 pt-12 max-w-5xl mx-auto">
             <div className="text-center animate-fade-in" style={{ animationDelay: "0.2s" }}>
               <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">6+</div>
               <div className="text-sm text-muted-foreground">Years Experience</div>
@@ -88,6 +89,18 @@ const Hero = () => {
             <div className="text-center animate-fade-in" style={{ animationDelay: "0.6s" }}>
               <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">24/7</div>
               <div className="text-sm text-muted-foreground">Support Available</div>
+            </div>
+            <div className="text-center animate-fade-in" style={{ animationDelay: "0.8s" }}>
+              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">20+</div>
+              <div className="text-sm text-muted-foreground">Deployments</div>
+            </div>
+            <div className="text-center animate-fade-in" style={{ animationDelay: "1s" }}>
+              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">50K+</div>
+              <div className="text-sm text-muted-foreground">Tx/day Capacity</div>
+            </div>
+            <div className="text-center animate-fade-in" style={{ animationDelay: "1.2s" }}>
+              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">10+</div>
+              <div className="text-sm text-muted-foreground">Cities Served</div>
             </div>
           </div>
         </div>
