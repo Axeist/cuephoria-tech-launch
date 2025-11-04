@@ -8,14 +8,20 @@ const team = [
     name: "Mr. Ranjith Kumar S",
     role: "Founder & CEO",
     image: founderImage,
-    bio: "6+ years of corporate experience spanning sales and operations, specializing in technology and application development. Visionary leader driving Cuephoria's technical innovation.",
+    phone: "8667637565",
+    bio: "With over 6 years of distinguished corporate experience, Ranjith has mastered the art of transforming business challenges into technological solutions. His career journey began in sales, where he developed a deep understanding of customer needs and market dynamics. This foundation propelled him into operations management, where he orchestrated seamless processes across multiple business verticals.",
+    expertise: "As a technology visionary, Ranjith specializes in application development and system architecture, with a particular focus on gaming and entertainment management software. His hands-on approach to product development ensures that every solution addresses real-world operational challenges. Under his leadership, Cuephoria Tech has developed cutting-edge POS systems and management platforms that revolutionize how gaming lounges and entertainment venues operate.",
+    achievements: "Pioneer in gaming lounge technology solutions, expert in React & modern web technologies, proven track record in business operations optimization.",
     specialization: "Tech & Application Development",
   },
   {
     name: "Mr. Krishna M Bajaj",
     role: "Co-Founder & CMO",
     image: cofounderImage,
-    bio: "Entrepreneurial leader managing multiple successful ventures including TipNTop and Bamboo Garden. Expert in sales, marketing, and snooker club operations.",
+    phone: "8637625155",
+    bio: "Krishna is a dynamic entrepreneurial force with a proven track record of building and scaling multiple successful businesses. As the driving force behind TipNTop and Bamboo Garden, he has demonstrated exceptional ability in creating memorable customer experiences and building strong brand identities in competitive markets.",
+    expertise: "His expertise in sales and marketing strategy is complemented by hands-on operational knowledge gained from running Cuephoria Gaming Lounge, Trichy's premier 8-ball club and gaming destination. This unique perspective allows him to understand the operational needs of entertainment venues from the ground up, making him invaluable in shaping products that truly serve the industry.",
+    achievements: "Multi-business owner and operator, expert in snooker club management and gaming lounge operations, master of customer acquisition and retention strategies.",
     specialization: "Sales & Marketing",
   },
 ];
@@ -57,28 +63,40 @@ const Team = () => {
 
                 <div className="p-6 space-y-4">
                   <div>
-                    <h3 className="text-2xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
+                    <h3 className="text-2xl font-bold text-foreground mb-1 group-hover:text-gradient transition-colors">
                       {member.name}
                     </h3>
-                    <p className="text-primary font-semibold">{member.role}</p>
+                    <p className="text-gradient-secondary font-semibold text-lg mb-2">{member.role}</p>
+                    <p className="text-sm text-muted-foreground">📞 {member.phone}</p>
                   </div>
 
-                  <p className="text-muted-foreground leading-relaxed">
-                    {member.bio}
-                  </p>
+                  <div className="space-y-3 text-sm">
+                    <p className="text-muted-foreground leading-relaxed">
+                      {member.bio}
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {member.expertise}
+                    </p>
+                    <div className="pt-2">
+                      <p className="text-xs font-semibold text-primary mb-2">Key Achievements:</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        {member.achievements}
+                      </p>
+                    </div>
+                  </div>
 
                   <div className="flex gap-3 pt-2">
                     <a
                       href="mailto:contact@cuephoria.in"
-                      className="w-10 h-10 rounded-lg bg-secondary hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group/icon"
+                      className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 hover:from-primary/40 hover:to-secondary/40 border border-primary/30 flex items-center justify-center transition-all duration-300 hover:scale-110 group/icon"
                     >
-                      <Mail className="w-5 h-5 text-foreground group-hover/icon:text-primary transition-colors" />
+                      <Mail className="w-5 h-5 text-primary group-hover/icon:text-foreground transition-colors" />
                     </a>
                     <a
                       href="#"
-                      className="w-10 h-10 rounded-lg bg-secondary hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group/icon"
+                      className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 hover:from-primary/40 hover:to-secondary/40 border border-primary/30 flex items-center justify-center transition-all duration-300 hover:scale-110 group/icon"
                     >
-                      <Linkedin className="w-5 h-5 text-foreground group-hover/icon:text-primary transition-colors" />
+                      <Linkedin className="w-5 h-5 text-primary group-hover/icon:text-foreground transition-colors" />
                     </a>
                   </div>
                 </div>
