@@ -55,7 +55,7 @@ const Team = () => {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className={`w-full h-[420px] md:h-[460px] object-cover ${index === 0 ? "object-[50%_42%]" : "object-[50%_27%]"} group-hover:scale-105 transition-transform duration-500`}
+                    className={`w-full h-[420px] md:h-[460px] object-cover ${index === 0 ? "object-[50%_42%]" : "object-[50%_23%]"} group-hover:scale-105 transition-transform duration-500`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
                   
