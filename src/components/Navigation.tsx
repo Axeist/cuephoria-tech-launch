@@ -47,11 +47,19 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <a href="/" className="flex items-center space-x-3 group">
-            <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-primary/40 shadow-[0_0_20px_rgba(140,60,255,0.35)] group-hover:shadow-[0_0_30px_rgba(140,60,255,0.55)] transition-shadow">
-              <img src={logo} alt="Cuephoria" className="w-full h-full object-cover" />
+          <a href="/" className="flex items-center gap-3 group">
+            <div className="relative w-11 h-11 rounded-xl overflow-hidden ring-1 ring-primary/40 shadow-[0_0_18px_rgba(140,60,255,0.35)] transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(140,60,255,0.6)]">
+              <div className="absolute -inset-1 rounded-xl bg-gradient-to-tr from-primary/40 via-transparent to-secondary/40 opacity-0 group-hover:opacity-100 blur-md transition-opacity" />
+              <img src={logo} alt="Cuephoria" className="relative w-full h-full object-cover" />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Cuephoria Tech</span>
+            <div className="flex items-center gap-2">
+              <span className="text-[1.2rem] font-extrabold tracking-tight bg-gradient-to-r from-primary via-fuchsia-400 to-secondary bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(140,60,255,0.15)]">
+                Cuephoria
+              </span>
+              <span className="px-2 py-0.5 text-xs font-semibold rounded-md bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-[0_0_12px_rgba(140,60,255,0.35)]">
+                Tech
+              </span>
+            </div>
           </a>
 
           {/* Desktop Menu */}
