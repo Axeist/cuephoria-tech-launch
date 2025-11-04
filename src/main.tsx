@@ -4,7 +4,7 @@ import "./index.css";
 
 // Ensure favicon and title are set to Cuephoria branding
 try {
-  document.title = "Cuephoria Tech Solutions";
+  document.title = "Cuephoria Tech™ - Technolgy Simplified";
   const iconHref = new URL("./assets/cuephoria-logo.png", import.meta.url).toString();
   let link = document.querySelector<HTMLLinkElement>('link[rel="icon"]');
   if (!link) {
