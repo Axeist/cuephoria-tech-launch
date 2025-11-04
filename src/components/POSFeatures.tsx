@@ -68,7 +68,7 @@ const POSFeatures = () => {
               })}
             </div>
 
-            <div className="pt-4">
+            <div className="pt-4 flex flex-wrap gap-3">
               <a
                 href="https://admin.cuephoria.in"
                 target="_blank"
@@ -77,6 +77,12 @@ const POSFeatures = () => {
               >
                 View Live Demo
                 <Zap className="w-4 h-4" />
+              </a>
+              <a
+                href="/pos"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-primary/50 hover:bg-primary/10 text-foreground font-semibold transition-all duration-300"
+              >
+                Learn more about POS
               </a>
             </div>
           </div>

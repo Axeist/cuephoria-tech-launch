@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/cuephoria-logo.png";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,21 +31,19 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-              <span className="text-2xl font-bold text-background">C</span>
+          <a href="/" className="flex items-center space-x-3 group">
+            <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-primary/40 shadow-[0_0_20px_rgba(140,60,255,0.35)] group-hover:shadow-[0_0_30px_rgba(140,60,255,0.55)] transition-shadow">
+              <img src={logo} alt="Cuephoria" className="w-full h-full object-cover" />
             </div>
-            <span className="text-xl font-bold text-gradient">Cuephoria Tech</span>
-          </div>
+            <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Cuephoria Tech</span>
+          </a>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             <button onClick={() => scrollToSection("services")} className="text-foreground hover:text-primary transition-colors">
               Services
             </button>
-            <button onClick={() => scrollToSection("pos")} className="text-foreground hover:text-primary transition-colors">
-              POS System
-            </button>
+            <a href="/pos" className="text-foreground hover:text-primary transition-colors">POS System</a>
             <button onClick={() => scrollToSection("team")} className="text-foreground hover:text-primary transition-colors">
               Team
             </button>
@@ -71,9 +70,9 @@ const Navigation = () => {
             <button onClick={() => scrollToSection("services")} className="block w-full text-left text-foreground hover:text-primary transition-colors">
               Services
             </button>
-            <button onClick={() => scrollToSection("pos")} className="block w-full text-left text-foreground hover:text-primary transition-colors">
+            <a href="/pos" className="block w-full text-left text-foreground hover:text-primary transition-colors">
               POS System
-            </button>
+            </a>
             <button onClick={() => scrollToSection("team")} className="block w-full text-left text-foreground hover:text-primary transition-colors">
               Team
             </button>

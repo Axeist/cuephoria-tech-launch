@@ -1,4 +1,5 @@
 import { Facebook, Twitter, Instagram, Linkedin, Mail } from "lucide-react";
+import logo from "@/assets/cuephoria-logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,12 +10,12 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-blue-400 rounded-lg flex items-center justify-center">
-                <span className="text-2xl font-bold text-background">C</span>
+            <a href="/" className="flex items-center space-x-3 group">
+              <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-primary/40 shadow-[0_0_20px_rgba(140,60,255,0.35)] group-hover:shadow-[0_0_30px_rgba(140,60,255,0.55)] transition-shadow">
+                <img src={logo} alt="Cuephoria" className="w-full h-full object-cover" />
               </div>
-              <span className="text-xl font-bold text-gradient">Cuephoria Tech</span>
-            </div>
+              <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Cuephoria Tech</span>
+            </a>
             <p className="text-muted-foreground text-sm">
               Empowering businesses with cutting-edge technology solutions and exceptional service.
             </p>
@@ -24,7 +25,7 @@ const Footer = () => {
           <div>
             <h4 className="font-bold text-foreground mb-4">Services</h4>
             <ul className="space-y-2 text-muted-foreground text-sm">
-              <li><a href="#pos" className="hover:text-primary transition-colors">POS System</a></li>
+              <li><a href="/pos" className="hover:text-primary transition-colors">POS System</a></li>
               <li><a href="#services" className="hover:text-primary transition-colors">Web Development</a></li>
               <li><a href="#services" className="hover:text-primary transition-colors">Cloud Solutions</a></li>
               <li><a href="#services" className="hover:text-primary transition-colors">Gaming Management</a></li>

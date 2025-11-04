@@ -1,6 +1,7 @@
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/hero-bg.jpg";
+import logo from "@/assets/cuephoria-logo.png";
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -26,12 +27,15 @@ const Hero = () => {
       {/* Floating Elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }} />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }} />
       </div>
 
       {/* Content */}
       <div className="container mx-auto px-4 z-10 pt-20">
         <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in-up">
+          <div className="mx-auto w-20 h-20 rounded-2xl overflow-hidden border border-primary/40 shadow-[0_0_30px_rgba(140,60,255,0.5)]">
+            <img src={logo} alt="Cuephoria" className="w-full h-full object-cover" />
+          </div>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/50 bg-primary/10 backdrop-blur-sm animate-scale-in">
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-sm text-foreground">Next-Generation Technology Solutions</span>
@@ -63,6 +67,13 @@ const Hero = () => {
             >
               Explore Services
             </Button>
+            <a
+              href="/pos"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-primary-foreground font-semibold transition-all duration-300 shadow-lg hover:shadow-primary/50"
+            >
+              Learn more about POS
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </div>
 
           <div className="grid grid-cols-3 gap-8 pt-12 max-w-2xl mx-auto">
