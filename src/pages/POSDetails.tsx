@@ -216,6 +216,41 @@ const POSDetails = () => {
         </div>
       </section>
 
+      {/* Screenshots Gallery - shown concurrently */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10 animate-fade-in-up">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3">
+              Product <span className="text-gradient">Screenshots</span>
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Explore multiple parts of the POS at a glance. All screenshots are from the live product.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[ 
+              { src: posDashboard, alt: "Dashboard" },
+              { src: posSales, alt: "Sales & Checkout" },
+              { src: posStations, alt: "Stations" },
+              { src: posProducts, alt: "Products" },
+              { src: posCustomers, alt: "Customers" },
+              { src: posReports, alt: "Reports" },
+              { src: posBookings, alt: "Bookings" },
+              { src: posStaff, alt: "Staff" },
+            ].map((shot, i) => (
+              <div key={i} className="relative rounded-xl overflow-hidden border border-primary/30 bg-card/40 group animate-fade-in-up" style={{ animationDelay: `${i * 0.05}s` }}>
+                <img src={shot.src} alt={shot.alt} className="w-full h-auto group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-background/80 to-transparent">
+                  <div className="inline-block px-3 py-1 rounded-full bg-primary/15 border border-primary/30 text-xs font-semibold text-primary">
+                    {shot.alt}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Main Features Section */}
       <section id="features" className="py-24 relative">
         <div className="container mx-auto px-4">

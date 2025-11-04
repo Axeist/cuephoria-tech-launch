@@ -17,16 +17,17 @@ All colors MUST be HSL.
     --popover: 230 20% 10%;
     --popover-foreground: 280 10% 98%;
 
-    --primary: 195 100% 50%;
+    /* Cuephoria Purple Theme */
+    --primary: 270 84% 60%; /* Vivid purple */
     --primary-foreground: 230 25% 8%;
 
-    --secondary: 280 50% 55%;
+    --secondary: 292 72% 55%; /* Pinkish purple */
     --secondary-foreground: 280 10% 98%;
 
     --muted: 230 20% 15%;
     --muted-foreground: 240 10% 65%;
 
-    --accent: 320 70% 60%;
+    --accent: 315 70% 60%; /* Magenta accent */
     --accent-foreground: 230 25% 8%;
 
     --destructive: 0 84% 60%;
@@ -34,20 +35,20 @@ All colors MUST be HSL.
 
     --border: 230 20% 18%;
     --input: 230 20% 18%;
-    --ring: 195 100% 50%;
+    --ring: 270 84% 60%;
 
     --radius: 0.75rem;
     
-    /* Gaming gradients - purple/pink/cyan theme */
-    --gradient-primary: linear-gradient(135deg, hsl(195 100% 50%), hsl(280 70% 60%));
-    --gradient-secondary: linear-gradient(135deg, hsl(280 70% 60%), hsl(320 70% 60%));
-    --gradient-hero: linear-gradient(135deg, hsl(230 25% 8%) 0%, hsl(280 30% 12%) 50%, hsl(230 25% 8%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(230 20% 10%), hsl(280 25% 12%));
-    --gradient-neon: linear-gradient(90deg, hsl(195 100% 50%), hsl(280 70% 60%), hsl(320 70% 60%));
+    /* Gradients - purple family only */
+    --gradient-primary: linear-gradient(135deg, hsl(270 84% 60%), hsl(292 72% 55%));
+    --gradient-secondary: linear-gradient(135deg, hsl(292 72% 55%), hsl(315 70% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(230 25% 8%) 0%, hsl(270 25% 14%) 50%, hsl(230 25% 8%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(230 20% 10%), hsl(270 25% 12%));
+    --gradient-neon: linear-gradient(90deg, hsl(270 84% 60%), hsl(292 72% 55%), hsl(315 70% 60%));
     
     /* Shadows & effects */
-    --shadow-glow: 0 0 40px hsla(280 70% 60% / 0.4);
-    --shadow-cyan: 0 0 30px hsla(195 100% 50% / 0.3);
+    --shadow-glow: 0 0 40px hsla(270 84% 60% / 0.45);
+    --shadow-cyan: 0 0 30px hsla(270 84% 60% / 0.35);
     --shadow-card: 0 8px 32px hsla(0 0% 0% / 0.5);
     
     /* Animations */

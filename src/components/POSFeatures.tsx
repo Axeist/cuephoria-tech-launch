@@ -29,7 +29,7 @@ const POSFeatures = () => {
     <section id="pos" className="py-24 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -56,7 +56,7 @@ const POSFeatures = () => {
                     className="flex gap-4 p-4 rounded-lg bg-card/50 border border-border/50 hover:border-primary/50 transition-all duration-300 hover:bg-card animate-slide-in-right"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-blue-400 flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink-0">
                       <Icon className="w-6 h-6 text-background" />
                     </div>
                     <div>
@@ -73,7 +73,7 @@ const POSFeatures = () => {
                 href="https://admin.cuephoria.in"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,200,255,0.5)]"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(140,60,255,0.5)]"
               >
                 View Live Demo
                 <Zap className="w-4 h-4" />
@@ -83,7 +83,7 @@ const POSFeatures = () => {
 
           {/* Right Image */}
           <div className="relative animate-fade-in" style={{ animationDelay: "0.3s" }}>
-            <div className="relative rounded-2xl overflow-hidden border border-primary/30 shadow-2xl hover:shadow-[0_0_40px_rgba(0,200,255,0.4)] transition-all duration-500">
+            <div className="relative rounded-2xl overflow-hidden border border-primary/30 shadow-2xl hover:shadow-[0_0_40px_rgba(140,60,255,0.4)] transition-all duration-500">
               <img
                 src={posImage}
                 alt="Cuephoria POS System"
