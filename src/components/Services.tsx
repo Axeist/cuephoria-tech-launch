@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 const services = [
@@ -47,17 +48,21 @@ const services = [
 const Services = () => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [requirements, setRequirements] = useState("");
 
-  const handleContact = () => {
-    const subject = encodeURIComponent(`Service Inquiry: ${selected ?? "Cuephoria Service"}`);
-    const body = encodeURIComponent(`Service: ${selected}\n\nRequirements:\n${requirements}\n\nContact me back.`);
-    // WhatsApp
-    const wa = `https://wa.me/918667635565?text=${encodeURIComponent(
-      `Service: ${selected}\nRequirements: ${requirements}`
-    )}`;
+  const buildMessage = () => `Service: ${selected}\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nRequirements:\n${requirements}`;
+
+  const handleWhatsApp = () => {
+    const wa = `https://wa.me/918667635565?text=${encodeURIComponent(buildMessage())}`;
     window.open(wa, "_blank");
-    // Email
+  };
+
+  const handleEmail = () => {
+    const subject = encodeURIComponent(`Service Inquiry: ${selected ?? "Cuephoria Service"}`);
+    const body = encodeURIComponent(buildMessage());
     window.location.href = `mailto:contact@cuephoria.in?subject=${subject}&body=${body}`;
   };
 
@@ -105,19 +110,25 @@ const Services = () => {
           <DialogHeader>
             <DialogTitle className="text-foreground">{selected}</DialogTitle>
             <DialogDescription className="text-muted-foreground">
-              Tell us briefly what you need. We’ll reach out on WhatsApp and Email.
+              Tell us what you need and how to contact you. Choose WhatsApp or Email to send your inquiry instantly.
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-3">
+            <div className="grid sm:grid-cols-3 gap-3">
+              <Input placeholder="Your name" value={name} onChange={(e) => setName(e.target.value)} />
+              <Input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <Input placeholder="Phone number" value={phone} onChange={(e) => setPhone(e.target.value)} />
+            </div>
             <Textarea
               placeholder="Describe your requirements..."
               value={requirements}
               onChange={(e) => setRequirements(e.target.value)}
               className="min-h-28"
             />
-            <div className="flex gap-3 justify-end">
+            <div className="flex flex-col sm:flex-row gap-3 justify-end">
               <Button variant="outline" onClick={() => setOpen(false)} className="border-primary text-foreground hover:bg-primary/10">Cancel</Button>
-              <Button onClick={handleContact} className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">Send via WhatsApp & Email</Button>
+              <Button onClick={handleWhatsApp} className="bg-green-500 hover:bg-green-500/90 text-white">Send via WhatsApp</Button>
+              <Button onClick={handleEmail} className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">Send via Email</Button>
             </div>
           </div>
         </DialogContent>

@@ -1,5 +1,7 @@
-import { Facebook, Twitter, Instagram, Linkedin, Mail } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Scale, Shield } from "lucide-react";
 import logo from "@/assets/cuephoria-logo.png";
+import { useState } from "react";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -59,13 +61,42 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Social Links & Copyright */}
+        {/* Social Links & Policies */}
         <div className="pt-8 border-t border-border/50">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-muted-foreground text-sm">
               © {currentYear} Cuephoria Tech. All rights reserved.
             </p>
-            <div className="flex gap-4">
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-4 text-sm">
+                <Dialog>
+                  <DialogTrigger className="text-muted-foreground hover:text-primary inline-flex items-center gap-2">
+                    <Scale className="w-4 h-4" /> Terms & Conditions
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Terms & Conditions</DialogTitle>
+                      <DialogDescription>
+                        By using Cuephoria products and services, you agree to fair-use, lawful usage, and payment terms. Data entered remains yours; we process it to provide the service. Refunds are handled case-by-case for subscriptions; one-time licenses are non-refundable after delivery. Contact us for any clarifications.
+                      </DialogDescription>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
+                <Dialog>
+                  <DialogTrigger className="text-muted-foreground hover:text-primary inline-flex items-center gap-2">
+                    <Shield className="w-4 h-4" /> Privacy Policy
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Privacy Policy</DialogTitle>
+                      <DialogDescription>
+                        We collect only necessary information to operate our services. Sensitive payment data is never stored by us. We use role-based access and industry security practices. You can request data export or deletion at any time by emailing contact@cuephoria.in.
+                      </DialogDescription>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
+              </div>
+              <div className="flex gap-4">
               <a
                 href="#"
                 className="w-10 h-10 rounded-lg bg-secondary hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
@@ -90,6 +121,7 @@ const Footer = () => {
               >
                 <Linkedin className="w-5 h-5 text-foreground group-hover:text-primary transition-colors" />
               </a>
+              </div>
             </div>
           </div>
         </div>
