@@ -91,7 +91,7 @@ const Services = () => {
                 <CardContent className="p-7 space-y-4">
                   <div className="relative">
                     <div className="absolute -inset-6 rounded-3xl bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
-                    <div className={`relative w-16 h-16 rounded-2xl ring-1 ring-primary/40 shadow-[0_0_20px_rgba(140,60,255,0.25)] bg-gradient-to-br ${service.gradient.replace(/blue-400|cyan-400|purple-400/g, "secondary")} flex items-center justify-center group-hover:scale-105 transition-transform duration-300`}>
+                    <div className={`relative w-16 h-16 rounded-2xl ring-1 ring-primary/40 shadow-[0_0_20px_rgba(140,60,255,0.25)] bg-gradient-to-br from-primary to-secondary flex items-center justify-center group-hover:scale-105 transition-transform duration-300`}>
                       <Icon className="w-8 h-8 text-background" />
                     </div>
                   </div>
