@@ -1,4 +1,4 @@
-import { Code, Database, Globe, Gamepad2, Cloud, ShoppingCart } from "lucide-react";
+import { Code, Database, Globe, Gamepad2, Cloud, ShoppingCart, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -85,19 +85,26 @@ const Services = () => {
               <Card
                 key={index}
                 onClick={() => { setSelected(service.title); setOpen(true); }}
-                className="card-gradient border-border/50 hover:border-primary/50 transition-all duration-300 group hover:shadow-[0_0_30px_rgba(140,60,255,0.35)] animate-fade-in-up cursor-pointer"
+                className="relative overflow-hidden card-gradient border-border/50 hover:border-primary/50 transition-all duration-300 group hover:shadow-[0_0_50px_rgba(140,60,255,0.45)] animate-fade-in-up cursor-pointer"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <CardContent className="p-6 space-y-4">
-                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${service.gradient.replace(/blue-400|cyan-400|purple-400/g, "secondary")} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className="w-7 h-7 text-background" />
+                <CardContent className="p-7 space-y-4">
+                  <div className="relative">
+                    <div className="absolute -inset-6 rounded-3xl bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
+                    <div className={`relative w-16 h-16 rounded-2xl ring-1 ring-primary/40 shadow-[0_0_20px_rgba(140,60,255,0.25)] bg-gradient-to-br ${service.gradient.replace(/blue-400|cyan-400|purple-400/g, "secondary")} flex items-center justify-center group-hover:scale-105 transition-transform duration-300`}>
+                      <Icon className="w-8 h-8 text-background" />
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="text-[1.25rem] md:text-[1.35rem] font-bold text-foreground group-hover:text-primary transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-base text-muted-foreground leading-relaxed">
                     {service.description}
                   </p>
+                  <div className="flex items-center gap-2 pt-1 text-primary font-medium opacity-80 group-hover:opacity-100">
+                    <span>Get a tailored quote</span>
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  </div>
                 </CardContent>
               </Card>
             );
