@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { 
@@ -174,6 +175,18 @@ const additionalFeatures = [
 ];
 
 const POSDetails = () => {
+  useEffect(() => {
+    document.title = "POS Software for Gaming Lounge & Snooker Club | Complete Features | Cuephoria Tech";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Complete POS software solution for gaming lounges and snooker clubs. Features booking management, inventory tracking, real-time analytics, PhonePe integration, staff management, and comprehensive reporting. Trusted by gaming venues across India.');
+    }
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute('href', 'https://cuephoria.in/pos');
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -190,10 +203,10 @@ const POSDetails = () => {
               <span className="text-sm text-primary font-semibold">COMPREHENSIVE SOLUTION</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-bold">
-              Cuephoria's <span className="text-gradient">Cutting-Edge POS</span>
+              Best POS Software for <span className="text-gradient">Gaming Lounge & Snooker Club</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground">
-              The ultimate all-in-one point-of-sale and management system designed specifically for gaming lounges, cafes, and entertainment venues.
+              Complete point-of-sale and management system for gaming lounges, snooker clubs, billiards centers, and cafes. Features booking management, inventory tracking, real-time analytics, PhonePe integration, and comprehensive reporting.
             </p>
             <div className="flex flex-wrap gap-4 justify-center pt-4">
               <a

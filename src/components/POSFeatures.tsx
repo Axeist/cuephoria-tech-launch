@@ -92,7 +92,7 @@ const POSFeatures = () => {
             <div className="relative rounded-2xl overflow-hidden border border-primary/30 shadow-2xl hover:shadow-[0_0_40px_rgba(140,60,255,0.4)] transition-all duration-500">
               <img
                 src={posImage}
-                alt="Cuephoria POS System"
+                alt="Cuephoria POS system for gaming lounge and snooker club with booking management and inventory tracking"
                 className="w-full h-auto"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />

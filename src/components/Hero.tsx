@@ -51,7 +51,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
         <img
           src={heroBg}
-          alt="Tech background"
+          alt="Gaming lounge POS system dashboard with real-time analytics and booking management"
           className="w-full h-full object-cover opacity-25"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
@@ -75,12 +75,12 @@ const Hero = () => {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-            Empower Your Business with{" "}
-            <span className="text-gradient">Cutting-Edge Tech</span>
+            Best POS System for{" "}
+            <span className="text-gradient">Gaming Lounge & Snooker Club</span>
           </h1>
 
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            From advanced POS systems to comprehensive web solutions, we deliver technology that transforms gaming lounges and businesses into digital powerhouses.
+            Advanced point-of-sale software designed specifically for gaming lounges, snooker clubs, billiards centers, and cafes. Streamline operations with booking management, inventory tracking, real-time analytics, and PhonePe integration.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
