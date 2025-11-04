@@ -15,12 +15,28 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
+  useEffect(() => {
+    // Prevent background scrolling when mobile menu is open
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
+  const goToHomeHash = (hash: string) => {
+    if (window.location.pathname !== "/") {
+      window.location.href = `/${hash ? `#${hash}` : ""}`;
+      return;
+    }
+    const element = document.getElementById(hash);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
-      setIsMobileMenuOpen(false);
     }
+    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -40,17 +56,17 @@ const Navigation = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <button onClick={() => scrollToSection("services")} className="text-foreground hover:text-primary transition-colors">
+            <button onClick={() => goToHomeHash("services")} className="text-foreground hover:text-primary transition-colors">
               Services
             </button>
             <a href="/pos" className="text-foreground hover:text-primary transition-colors">POS System</a>
-            <button onClick={() => scrollToSection("team")} className="text-foreground hover:text-primary transition-colors">
+            <button onClick={() => goToHomeHash("team")} className="text-foreground hover:text-primary transition-colors">
               Team
             </button>
-            <button onClick={() => scrollToSection("contact")} className="text-foreground hover:text-primary transition-colors">
+            <button onClick={() => goToHomeHash("contact")} className="text-foreground hover:text-primary transition-colors">
               Contact
             </button>
-            <Button onClick={() => scrollToSection("contact")} className="bg-primary hover:bg-primary/90 text-primary-foreground">
+            <Button onClick={() => goToHomeHash("contact")} className="bg-primary hover:bg-primary/90 text-primary-foreground">
               Get Started
             </Button>
           </div>
@@ -66,20 +82,20 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 space-y-4 animate-fade-in">
-            <button onClick={() => scrollToSection("services")} className="block w-full text-left text-foreground hover:text-primary transition-colors">
+          <div className="md:hidden mt-4 pb-4 space-y-4 animate-fade-in bg-background/95 backdrop-blur-lg rounded-xl p-4 border border-border/60">
+            <button onClick={() => goToHomeHash("services")} className="block w-full text-left text-foreground hover:text-primary transition-colors">
               Services
             </button>
             <a href="/pos" className="block w-full text-left text-foreground hover:text-primary transition-colors">
               POS System
             </a>
-            <button onClick={() => scrollToSection("team")} className="block w-full text-left text-foreground hover:text-primary transition-colors">
+            <button onClick={() => goToHomeHash("team")} className="block w-full text-left text-foreground hover:text-primary transition-colors">
               Team
             </button>
-            <button onClick={() => scrollToSection("contact")} className="block w-full text-left text-foreground hover:text-primary transition-colors">
+            <button onClick={() => goToHomeHash("contact")} className="block w-full text-left text-foreground hover:text-primary transition-colors">
               Contact
             </button>
-            <Button onClick={() => scrollToSection("contact")} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+            <Button onClick={() => goToHomeHash("contact")} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
               Get Started
             </Button>
           </div>

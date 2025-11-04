@@ -1,5 +1,9 @@
 import { Code, Database, Globe, Gamepad2, Cloud, ShoppingCart } from "lucide-react";
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 
 const services = [
   {
@@ -41,6 +45,22 @@ const services = [
 ];
 
 const Services = () => {
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState<string | null>(null);
+  const [requirements, setRequirements] = useState("");
+
+  const handleContact = () => {
+    const subject = encodeURIComponent(`Service Inquiry: ${selected ?? "Cuephoria Service"}`);
+    const body = encodeURIComponent(`Service: ${selected}\n\nRequirements:\n${requirements}\n\nContact me back.`);
+    // WhatsApp
+    const wa = `https://wa.me/918667635565?text=${encodeURIComponent(
+      `Service: ${selected}\nRequirements: ${requirements}`
+    )}`;
+    window.open(wa, "_blank");
+    // Email
+    window.location.href = `mailto:contact@cuephoria.in?subject=${subject}&body=${body}`;
+  };
+
   return (
     <section id="services" className="py-24 relative">
       <div className="container mx-auto px-4">
@@ -59,11 +79,12 @@ const Services = () => {
             return (
               <Card
                 key={index}
-                className="card-gradient border-border/50 hover:border-primary/50 transition-all duration-300 group hover:shadow-[0_0_30px_rgba(0,200,255,0.3)] animate-fade-in-up"
+                onClick={() => { setSelected(service.title); setOpen(true); }}
+                className="card-gradient border-border/50 hover:border-primary/50 transition-all duration-300 group hover:shadow-[0_0_30px_rgba(140,60,255,0.35)] animate-fade-in-up cursor-pointer"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <CardContent className="p-6 space-y-4">
-                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${service.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${service.gradient.replace(/blue-400|cyan-400|purple-400/g, "secondary")} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                     <Icon className="w-7 h-7 text-background" />
                   </div>
                   <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
@@ -78,6 +99,29 @@ const Services = () => {
           })}
         </div>
       </div>
+
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="bg-card border-border">
+          <DialogHeader>
+            <DialogTitle className="text-foreground">{selected}</DialogTitle>
+            <DialogDescription className="text-muted-foreground">
+              Tell us briefly what you need. We’ll reach out on WhatsApp and Email.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-3">
+            <Textarea
+              placeholder="Describe your requirements..."
+              value={requirements}
+              onChange={(e) => setRequirements(e.target.value)}
+              className="min-h-28"
+            />
+            <div className="flex gap-3 justify-end">
+              <Button variant="outline" onClick={() => setOpen(false)} className="border-primary text-foreground hover:bg-primary/10">Cancel</Button>
+              <Button onClick={handleContact} className="bg-gradient-to-r from-primary to-secondary text-primary-foreground">Send via WhatsApp & Email</Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };

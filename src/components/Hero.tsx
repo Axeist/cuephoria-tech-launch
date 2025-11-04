@@ -1,6 +1,6 @@
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroBg from "@/assets/pos-system.jpg";
 import logo from "@/assets/cuephoria-logo.png";
 
 const Hero = () => {
@@ -15,11 +15,11 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
         <img
           src={heroBg}
           alt="Tech background"
-          className="w-full h-full object-cover opacity-30"
+          className="w-full h-full object-cover opacity-25"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
       </div>
@@ -33,7 +33,7 @@ const Hero = () => {
       {/* Content */}
       <div className="container mx-auto px-4 z-10 pt-20">
         <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in-up">
-          <div className="mx-auto w-20 h-20 rounded-2xl overflow-hidden border border-primary/40 shadow-[0_0_30px_rgba(140,60,255,0.5)]">
+          <div className="mx-auto w-28 h-28 rounded-2xl overflow-hidden border border-primary/40 shadow-[0_0_40px_rgba(140,60,255,0.6)]">
             <img src={logo} alt="Cuephoria" className="w-full h-full object-cover" />
           </div>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/50 bg-primary/10 backdrop-blur-sm animate-scale-in">
