@@ -81,10 +81,10 @@ const Clients = () => {
                       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                       
                       <CardContent className="p-8 relative z-10">
-                        {/* Logo and Rating */}
-                        <div className="flex items-start justify-between mb-6">
+                        {/* Logo - Centered */}
+                        <div className="flex justify-center mb-6">
                           <div className="relative">
-                            <div className="w-24 h-24 rounded-2xl overflow-hidden border-2 border-primary/30 bg-gradient-to-br from-background/80 to-background/40 p-3 group-hover:border-primary/60 group-hover:shadow-[0_0_30px_rgba(140,60,255,0.5)] transition-all duration-500">
+                            <div className="w-32 h-32 rounded-3xl overflow-hidden border-2 border-primary/30 bg-gradient-to-br from-background/90 via-background/70 to-background/50 p-4 group-hover:border-primary/60 group-hover:shadow-[0_0_40px_rgba(140,60,255,0.6)] transition-all duration-500 group-hover:scale-105">
                               <img
                                 src={client.logo}
                                 alt={client.name}
@@ -94,24 +94,26 @@ const Clients = () => {
                                 }}
                               />
                             </div>
-                            <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center border-2 border-background shadow-lg">
-                              <Star className="w-4 h-4 fill-background text-background" />
+                            <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center border-3 border-background shadow-xl group-hover:scale-110 transition-transform">
+                              <Star className="w-5 h-5 fill-background text-background" />
                             </div>
-                          </div>
-                          <div className="flex items-center gap-1 bg-primary/10 px-3 py-1.5 rounded-full border border-primary/30">
-                            {Array.from({ length: client.rating }).map((_, i) => (
-                              <Star
-                                key={i}
-                                className="w-5 h-5 fill-primary text-primary drop-shadow-[0_0_8px_rgba(140,60,255,0.6)]"
-                              />
-                            ))}
                           </div>
                         </div>
 
-                        {/* Client Name */}
-                        <h3 className="text-3xl font-bold mb-4 text-foreground group-hover:text-gradient transition-all duration-300">
+                        {/* Client Name - Centered */}
+                        <h3 className="text-3xl font-bold mb-3 text-center text-foreground group-hover:text-gradient transition-all duration-300">
                           {client.name}
                         </h3>
+
+                        {/* Rating - Centered */}
+                        <div className="flex items-center justify-center gap-1 mb-6 bg-primary/10 px-4 py-2 rounded-full border border-primary/30 w-fit mx-auto">
+                          {Array.from({ length: client.rating }).map((_, i) => (
+                            <Star
+                              key={i}
+                              className="w-5 h-5 fill-primary text-primary drop-shadow-[0_0_8px_rgba(140,60,255,0.6)]"
+                            />
+                          ))}
+                        </div>
 
                         {/* Location */}
                         <div className="flex items-start gap-3 mb-4 p-3 rounded-lg bg-background/30 border border-border/30 group-hover:border-primary/30 transition-all">
