@@ -1,5 +1,15 @@
-import { CheckCircle, TrendingUp, Users, Zap } from "lucide-react";
+import { useState } from "react";
+import { CheckCircle, TrendingUp, Users, Zap, Phone } from "lucide-react";
 import posImage from "@/assets/pos-system.jpg";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 const features = [
   {
@@ -25,6 +35,34 @@ const features = [
 ];
 
 const POSFeatures = () => {
+  const [demoDialogOpen, setDemoDialogOpen] = useState(false);
+
+  const goToContact = () => {
+    // If we're already on the home page, just scroll
+    if (window.location.pathname === '/') {
+      setTimeout(() => {
+        const element = document.getElementById('contact');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 50);
+    } else {
+      // Navigate to home page with hash
+      window.location.href = '/#contact';
+    }
+  };
+
+  const handleDemoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setDemoDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setDemoDialogOpen(false);
+    // Navigate to contact page after dialog closes
+    goToContact();
+  };
+
   return (
     <section id="pos" className="py-24 relative overflow-hidden">
       {/* Background Elements */}
@@ -70,9 +108,8 @@ const POSFeatures = () => {
 
             <div className="pt-4 flex flex-wrap gap-3">
               <a
-                href="https://admin.cuephoria.in"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
+                onClick={handleDemoClick}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(140,60,255,0.5)]"
               >
                 View Live Demo
@@ -111,6 +148,41 @@ const POSFeatures = () => {
           </div>
         </div>
       </div>
+
+      {/* Demo Dialog */}
+      <Dialog open={demoDialogOpen} onOpenChange={(open) => {
+        if (!open) {
+          handleDialogClose();
+        }
+      }}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-center">Demo Access Required</DialogTitle>
+            <DialogDescription className="text-center pt-2 text-base">
+              Please reach out to the sales team <span className="font-semibold">8637625155</span> to get access for the demo.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="py-4">
+            <div className="flex items-center justify-center gap-3 p-4 rounded-lg bg-primary/10 border border-primary/30">
+              <Phone className="w-5 h-5 text-primary" />
+              <a 
+                href="tel:8637625155" 
+                className="text-lg font-semibold text-primary hover:underline"
+              >
+                8637625155
+              </a>
+            </div>
+          </div>
+          <DialogFooter className="sm:justify-center">
+            <Button
+              onClick={handleDialogClose}
+              className="w-full sm:w-auto bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+            >
+              Go to Contact Page
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
