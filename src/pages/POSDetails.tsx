@@ -379,12 +379,15 @@ const POSDetails = () => {
   const goToContact = () => {
     // If we're already on the home page, just scroll
     if (window.location.pathname === '/') {
-      const element = document.getElementById('contact');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      setTimeout(() => {
+        const element = document.getElementById('contact');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 50);
     } else {
-      // Navigate to home page with hash - this is more reliable for hash navigation
+      // Navigate to home page with hash
+      // Use window.location.href for full page reload to ensure hash is processed
       window.location.href = '/#contact';
     }
   };
