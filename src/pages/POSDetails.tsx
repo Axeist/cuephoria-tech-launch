@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { 
@@ -357,6 +358,7 @@ const pricingPlans = [
 const POSDetails = () => {
   const [activeFilter, setActiveFilter] = useState<'monthly' | 'quarterly' | '6months' | 'annual' | 'lifetime' | 'all'>('all');
   const [demoDialogOpen, setDemoDialogOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = "POS Software for Gaming Lounge & Snooker Club | Complete Features | Cuephoria Tech";
@@ -374,6 +376,19 @@ const POSDetails = () => {
     ? pricingPlans 
     : pricingPlans.filter(plan => plan.category === activeFilter);
 
+  const goToContact = () => {
+    // If we're already on the home page, just scroll
+    if (window.location.pathname === '/') {
+      const element = document.getElementById('contact');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Navigate to home page with hash - this is more reliable for hash navigation
+      window.location.href = '/#contact';
+    }
+  };
+
   const handleDemoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     setDemoDialogOpen(true);
@@ -381,8 +396,8 @@ const POSDetails = () => {
 
   const handleDialogClose = () => {
     setDemoDialogOpen(false);
-    // Redirect to contact page after dialog closes
-    window.location.href = '/#contact';
+    // Navigate to contact page after dialog closes
+    goToContact();
   };
 
   return (
@@ -694,7 +709,11 @@ const POSDetails = () => {
                           </p>
                         </div>
                         <a
-                          href="/#contact"
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            goToContact();
+                          }}
                           className="block text-center px-6 py-4 rounded-xl bg-gradient-to-r from-primary to-secondary text-primary-foreground font-bold hover:opacity-90 transition-all shadow-lg"
                         >
                           Contact Sales
@@ -702,7 +721,11 @@ const POSDetails = () => {
                       </div>
                     ) : (
                       <a
-                        href="/#contact"
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          goToContact();
+                        }}
                         className={`block text-center px-6 py-4 rounded-xl font-semibold transition-all ${
                           plan.popular
                             ? 'bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 shadow-lg'
@@ -803,7 +826,11 @@ const POSDetails = () => {
                 Try Live Demo
               </a>
               <a
-                href="/#contact"
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  goToContact();
+                }}
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-lg border-2 border-primary/50 hover:bg-primary/10 text-foreground font-semibold transition-all duration-300"
               >
                 Contact Sales
