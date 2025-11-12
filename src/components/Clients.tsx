@@ -94,7 +94,7 @@ const Clients = () => {
                                 }}
                               />
                             </div>
-                            <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center border-3 border-background shadow-xl group-hover:scale-110 transition-transform">
+                            <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center border-[3px] border-background shadow-xl group-hover:scale-110 transition-transform">
                               <Star className="w-5 h-5 fill-background text-background" />
                             </div>
                           </div>
