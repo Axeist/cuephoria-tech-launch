@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Calendar, Clock, User, Eye, ArrowRight, Tag } from "lucide-react";
+import { Calendar, Clock, User, Eye, ArrowRight, Tag, FileText, TrendingUp, Zap, ShoppingCart, BarChart3, Users, Settings, Target } from "lucide-react";
 import { blogPosts } from "@/data/blogPosts";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -13,6 +13,18 @@ const Blog = () => {
   const filteredPosts = selectedCategory === "All" 
     ? blogPosts 
     : blogPosts.filter(post => post.category === selectedCategory);
+
+  // Get icon based on category
+  const getCategoryIcon = (category: string) => {
+    const iconMap: { [key: string]: React.ReactNode } = {
+      "Business Management": <BarChart3 className="w-12 h-12" />,
+      "Technology": <Zap className="w-12 h-12" />,
+      "Operations": <Settings className="w-12 h-12" />,
+      "Marketing": <Target className="w-12 h-12" />,
+      "POS System": <ShoppingCart className="w-12 h-12" />,
+    };
+    return iconMap[category] || <FileText className="w-12 h-12" />;
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -64,12 +76,10 @@ const Blog = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <Link to={`/blog/${post.id}`}>
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
+                  <div className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-primary/5 to-secondary/10 p-8 flex items-center justify-center min-h-[200px] group-hover:from-primary/20 group-hover:to-secondary/20 transition-all duration-500">
+                    <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary/20 via-primary/10 to-secondary/10 border-2 border-primary/30 flex items-center justify-center text-primary group-hover:border-primary/60 group-hover:shadow-[0_0_30px_rgba(140,60,255,0.5)] group-hover:scale-110 transition-all duration-500">
+                      {getCategoryIcon(post.category)}
+                    </div>
                     <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-primary/90 backdrop-blur-sm">
                       <span className="text-xs font-semibold text-background">{post.category}</span>
                     </div>
