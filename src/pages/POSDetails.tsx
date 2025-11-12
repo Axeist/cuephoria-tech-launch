@@ -337,79 +337,460 @@ const POSDetails = () => {
       {/* Pricing Section */}
       <section className="py-24">
         <div className="container mx-auto px-4">
-          <div className="text-left md:text-center mb-12 animate-fade-in-up">
+          <div className="text-center mb-16 animate-fade-in-up">
             <h2 className="text-4xl md:text-5xl font-bold mb-3">Simple Pricing That Scales</h2>
-            <p className="text-muted-foreground text-lg">Choose the pricing plan that fits your business needs:</p>
+            <p className="text-muted-foreground text-lg max-w-3xl mx-auto">Choose the pricing plan that fits your business needs. All plans include core POS, Gaming Stations, Products Management, Customer Management, and Reports & Analytics.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 items-start">
-            {/* Left details list */}
-            <div className="p-6 rounded-2xl border border-border/60 card-gradient">
-              <h3 className="text-xl font-bold mb-4">One-time License (Own it)</h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>• ₹60,000 core POS</li>
-                <li>• ₹15,000 booking platform</li>
-                <li>• ₹5,000 staff & payroll</li>
-              </ul>
-              <div className="mt-3 text-sm text-muted-foreground">Total: ₹80,000 one-time payment</div>
-              <ul className="mt-6 space-y-3">
-                <li className="flex items-start gap-2"><span className="text-primary">✓</span><span className="text-muted-foreground">Includes: Brand website with custom domain</span></li>
-                <li className="flex items-start gap-2"><span className="text-primary">✓</span><span className="text-muted-foreground">Official business email addresses</span></li>
-                <li className="flex items-start gap-2"><span className="text-primary">✓</span><span className="text-muted-foreground">6 months technical support included</span></li>
-              </ul>
+          {/* Pricing Tabs */}
+          <div className="mb-8 flex flex-wrap justify-center gap-2">
+            <button className="px-4 py-2 rounded-lg border border-primary/30 bg-primary/10 text-primary font-semibold">Monthly</button>
+            <button className="px-4 py-2 rounded-lg border border-border/50 hover:bg-primary/5 text-muted-foreground">Quarterly</button>
+            <button className="px-4 py-2 rounded-lg border border-border/50 hover:bg-primary/5 text-muted-foreground">6 Months</button>
+            <button className="px-4 py-2 rounded-lg border border-border/50 hover:bg-primary/5 text-muted-foreground">Annual</button>
+            <button className="px-4 py-2 rounded-lg border border-border/50 hover:bg-primary/5 text-muted-foreground">Lifetime</button>
+          </div>
 
-              <h3 className="text-xl font-bold mt-10 mb-2">Subscription (Pay monthly)</h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>• ₹1,999/month – Core POS only</li>
-                <li>• ₹2,499/month – Full Suite</li>
-              </ul>
-              <div className="text-xs text-muted-foreground mt-2">(POS + Booking + Staff & Payroll)</div>
+          {/* Monthly Plans */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold mb-6 text-center">Monthly Plans</h3>
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {/* Silver Basic */}
+              <div className="rounded-2xl border border-border/60 bg-gradient-to-b from-background to-muted/20 p-6 hover:border-primary/50 transition-all">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h4 className="text-xl font-bold">Silver Basic</h4>
+                    <p className="text-sm text-muted-foreground">1 Month</p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-extrabold">₹2,000</div>
+                    <div className="text-xs text-muted-foreground">per month</div>
+                  </div>
+                </div>
+                <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>All core features</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>POS System</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Gaming Stations</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Products Management</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Customer Management</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Reports & Analytics</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-muted-foreground/70">
+                    <span>✗</span>
+                    <span>Booking Access</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-muted-foreground/70">
+                    <span>✗</span>
+                    <span>Staff Management</span>
+                  </li>
+                </ul>
+                <a href="/#contact" className="block text-center px-4 py-3 rounded-lg border border-primary/30 hover:bg-primary/10 text-primary font-semibold transition-all">Get Started</a>
+              </div>
 
-              <div className="mt-8 space-y-2 text-sm text-muted-foreground">
-                <div>▣ GST invoices provided for all plans</div>
-                <div>▣ Optional hardware integration available</div>
-                <div>▣ PhonePe UPI supported on all plans</div>
-                <div>▣ Offline-first sync capabilities</div>
-                <div>▣ India data residency option available</div>
+              {/* Silver Advanced */}
+              <div className="rounded-2xl border border-primary/30 bg-gradient-to-b from-primary/10 to-background p-6 shadow-[0_0_30px_rgba(140,60,255,0.25)] hover:shadow-[0_0_40px_rgba(140,60,255,0.35)] transition-all">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h4 className="text-xl font-bold">Silver Advanced</h4>
+                    <p className="text-sm text-muted-foreground">1 Month</p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-extrabold">₹3,000</div>
+                    <div className="text-xs text-muted-foreground">per month</div>
+                  </div>
+                </div>
+                <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>All Silver Basic features</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Booking Management</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Staff Management</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Public Booking Page</span>
+                  </li>
+                </ul>
+                <a href="/#contact" className="block text-center px-4 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all">Get Started</a>
               </div>
             </div>
+          </div>
 
-            {/* Right cards */}
-            <div className="grid sm:grid-cols-2 gap-6">
-              <div className="rounded-2xl border border-primary/30 bg-gradient-to-b from-primary/10 to-background p-6 shadow-[0_0_30px_rgba(140,60,255,0.25)]">
-                <div className="text-center mb-4">
-                  <div className="text-lg font-semibold">One-time License</div>
-                  <div className="text-sm text-muted-foreground">Own it forever</div>
+          {/* Quarterly Plans */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold mb-6 text-center">Quarterly Plans <span className="text-sm font-normal text-primary">(10% Savings)</span></h3>
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {/* Gold Basic */}
+              <div className="rounded-2xl border border-border/60 bg-gradient-to-b from-background to-muted/20 p-6 hover:border-primary/50 transition-all">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h4 className="text-xl font-bold">Gold Basic</h4>
+                    <p className="text-sm text-muted-foreground">3 Months</p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-extrabold">₹5,400</div>
+                    <div className="text-xs text-muted-foreground">₹1,800/month</div>
+                  </div>
                 </div>
-                <div className="text-4xl font-extrabold text-center mb-2">₹80,000</div>
-                <div className="text-sm text-center text-muted-foreground mb-6">one-time payment</div>
+                <div className="mb-4 px-3 py-1 bg-primary/10 border border-primary/30 rounded-full text-xs text-primary font-semibold inline-block">10% OFF</div>
                 <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                  <li>✓ Complete ownership</li>
-                  <li>✓ Full feature suite</li>
-                  <li>✓ Brand website</li>
-                  <li>✓ Custom domain</li>
-                  <li>✓ Official email</li>
-                  <li>✓ 6 months support</li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>All Silver Basic features</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>3 Months Validity</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>10% Savings</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-muted-foreground/70">
+                    <span>✗</span>
+                    <span>Booking Access</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-muted-foreground/70">
+                    <span>✗</span>
+                    <span>Staff Management</span>
+                  </li>
                 </ul>
-                <a href="/#contact" className="block text-center px-4 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90">Best for established venues</a>
+                <a href="/#contact" className="block text-center px-4 py-3 rounded-lg border border-primary/30 hover:bg-primary/10 text-primary font-semibold transition-all">Get Started</a>
               </div>
-              <div className="rounded-2xl border border-primary/30 bg-gradient-to-b from-secondary/10 to-background p-6">
-                <div className="text-center mb-4">
-                  <div className="text-lg font-semibold">Subscription</div>
-                  <div className="text-sm text-muted-foreground">Pay monthly</div>
+
+              {/* Gold Advanced */}
+              <div className="rounded-2xl border border-primary/30 bg-gradient-to-b from-primary/10 to-background p-6 shadow-[0_0_30px_rgba(140,60,255,0.25)] hover:shadow-[0_0_40px_rgba(140,60,255,0.35)] transition-all">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h4 className="text-xl font-bold">Gold Advanced</h4>
+                    <p className="text-sm text-muted-foreground">3 Months</p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-extrabold">₹8,100</div>
+                    <div className="text-xs text-muted-foreground">₹2,700/month</div>
+                  </div>
                 </div>
-                <div className="text-4xl font-extrabold text-center mb-2">₹2,499 <span className="text-base font-medium text-muted-foreground">/month</span></div>
-                <div className="text-sm text-center text-muted-foreground mb-6">Full Suite<br/>(or ₹1,999 Core POS only)</div>
+                <div className="mb-4 px-3 py-1 bg-primary/20 border border-primary/30 rounded-full text-xs text-primary font-semibold inline-block">10% OFF</div>
                 <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                  <li>✓ No upfront investment</li>
-                  <li>✓ Regular updates</li>
-                  <li>✓ Always latest features</li>
-                  <li>✓ Full technical support</li>
-                  <li>✓ Scale up or down anytime</li>
-                  <li>✓ Cancel anytime</li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>All Silver Advanced features</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>3 Months Validity</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>10% Savings</span>
+                  </li>
                 </ul>
-                <a href="/#contact" className="block text-center px-4 py-3 rounded-lg bg-gradient-to-r from-primary to-secondary text-primary-foreground font-semibold hover:opacity-90">Best for growing venues</a>
+                <a href="/#contact" className="block text-center px-4 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all">Get Started</a>
               </div>
+            </div>
+          </div>
+
+          {/* 6-Month Plans */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold mb-6 text-center">6-Month Plans <span className="text-sm font-normal text-primary">(15% Savings)</span></h3>
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {/* Platinum Basic */}
+              <div className="rounded-2xl border border-border/60 bg-gradient-to-b from-background to-muted/20 p-6 hover:border-primary/50 transition-all">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h4 className="text-xl font-bold">Platinum Basic</h4>
+                    <p className="text-sm text-muted-foreground">6 Months</p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-extrabold">₹10,200</div>
+                    <div className="text-xs text-muted-foreground">₹1,700/month</div>
+                  </div>
+                </div>
+                <div className="mb-4 px-3 py-1 bg-primary/10 border border-primary/30 rounded-full text-xs text-primary font-semibold inline-block">15% OFF</div>
+                <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>All Silver Basic features</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>6 Months Validity</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>15% Savings</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Extended support</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Priority email support</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Advanced analytics</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-muted-foreground/70">
+                    <span>✗</span>
+                    <span>Booking Access</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-muted-foreground/70">
+                    <span>✗</span>
+                    <span>Staff Management</span>
+                  </li>
+                </ul>
+                <a href="/#contact" className="block text-center px-4 py-3 rounded-lg border border-primary/30 hover:bg-primary/10 text-primary font-semibold transition-all">Get Started</a>
+              </div>
+
+              {/* Platinum Advanced */}
+              <div className="rounded-2xl border border-primary/30 bg-gradient-to-b from-primary/10 to-background p-6 shadow-[0_0_30px_rgba(140,60,255,0.25)] hover:shadow-[0_0_40px_rgba(140,60,255,0.35)] transition-all">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h4 className="text-xl font-bold">Platinum Advanced</h4>
+                    <p className="text-sm text-muted-foreground">6 Months</p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-extrabold">₹15,300</div>
+                    <div className="text-xs text-muted-foreground">₹2,550/month</div>
+                  </div>
+                </div>
+                <div className="mb-4 px-3 py-1 bg-primary/20 border border-primary/30 rounded-full text-xs text-primary font-semibold inline-block">15% OFF</div>
+                <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>All Silver Advanced features</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>6 Months Validity</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>15% Savings</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Priority support channel</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Custom report generation</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>API access</span>
+                  </li>
+                </ul>
+                <a href="/#contact" className="block text-center px-4 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all">Get Started</a>
+              </div>
+            </div>
+          </div>
+
+          {/* Annual Plans */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold mb-6 text-center">Annual Plans <span className="text-sm font-normal text-primary">(25% Maximum Savings)</span></h3>
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {/* Diamond Basic */}
+              <div className="rounded-2xl border border-border/60 bg-gradient-to-b from-background to-muted/20 p-6 hover:border-primary/50 transition-all">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h4 className="text-xl font-bold">Diamond Basic</h4>
+                    <p className="text-sm text-muted-foreground">12 Months</p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-extrabold">₹18,000</div>
+                    <div className="text-xs text-muted-foreground">₹1,500/month</div>
+                  </div>
+                </div>
+                <div className="mb-4 px-3 py-1 bg-primary/10 border border-primary/30 rounded-full text-xs text-primary font-semibold inline-block">25% OFF</div>
+                <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>All Silver Basic features</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>12 Months Validity</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>25% Maximum Savings</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Dedicated account manager</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Annual business review</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Unlimited data retention</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Premium analytics dashboard</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-muted-foreground/70">
+                    <span>✗</span>
+                    <span>Booking Access</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-muted-foreground/70">
+                    <span>✗</span>
+                    <span>Staff Management</span>
+                  </li>
+                </ul>
+                <a href="/#contact" className="block text-center px-4 py-3 rounded-lg border border-primary/30 hover:bg-primary/10 text-primary font-semibold transition-all">Get Started</a>
+              </div>
+
+              {/* Diamond Advanced */}
+              <div className="rounded-2xl border border-primary/30 bg-gradient-to-b from-primary/10 to-background p-6 shadow-[0_0_30px_rgba(140,60,255,0.25)] hover:shadow-[0_0_40px_rgba(140,60,255,0.35)] transition-all">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h4 className="text-xl font-bold">Diamond Advanced</h4>
+                    <p className="text-sm text-muted-foreground">12 Months</p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-extrabold">₹27,000</div>
+                    <div className="text-xs text-muted-foreground">₹2,250/month</div>
+                  </div>
+                </div>
+                <div className="mb-4 px-3 py-1 bg-primary/20 border border-primary/30 rounded-full text-xs text-primary font-semibold inline-block">25% OFF</div>
+                <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>All Silver Advanced features</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>12 Months Validity</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>25% Maximum Savings</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>24/7 priority support</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Quarterly strategy sessions</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Custom integrations</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>White-label options</span>
+                  </li>
+                </ul>
+                <a href="/#contact" className="block text-center px-4 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all">Get Started</a>
+              </div>
+            </div>
+          </div>
+
+          {/* Lifetime Plan */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold mb-6 text-center">Lifetime License</h3>
+            <div className="max-w-2xl mx-auto">
+              <div className="rounded-2xl border-2 border-primary/50 bg-gradient-to-br from-primary/20 via-secondary/20 to-background p-8 shadow-[0_0_50px_rgba(140,60,255,0.4)] relative overflow-hidden">
+                <div className="absolute top-0 right-0 px-4 py-2 bg-primary text-primary-foreground font-bold text-sm rounded-bl-lg">BEST VALUE</div>
+                <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
+                  <div>
+                    <h4 className="text-3xl font-bold mb-2">Lifetime License</h4>
+                    <p className="text-muted-foreground">Own it forever</p>
+                  </div>
+                  <div className="text-center md:text-right">
+                    <div className="text-5xl font-extrabold mb-2">₹80,000</div>
+                    <div className="text-sm text-muted-foreground">One-time payment</div>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-4 mb-6">
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary font-bold">✓</span>
+                      <span>All Features Unlocked</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary font-bold">✓</span>
+                      <span>Lifetime Access</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary font-bold">✓</span>
+                      <span>Lifetime Support from Cuephoria</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary font-bold">✓</span>
+                      <span>5 Years of Updates</span>
+                    </li>
+                  </ul>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary font-bold">✓</span>
+                      <span>Priority Support</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary font-bold">✓</span>
+                      <span>Enterprise Features</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary font-bold">✓</span>
+                      <span>Booking Access</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-primary font-bold">✓</span>
+                      <span>Staff Management Access</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="p-4 bg-background/50 rounded-lg border border-primary/30 mb-6">
+                  <p className="text-sm font-semibold mb-2">Contact for Purchase:</p>
+                  <p className="text-sm text-muted-foreground">Name: Krishna</p>
+                  <p className="text-sm text-muted-foreground">Phone: <a href="tel:8667857094" className="text-primary hover:underline">8667857094</a></p>
+                </div>
+                <a href="/#contact" className="block text-center px-6 py-4 rounded-lg bg-gradient-to-r from-primary to-secondary text-primary-foreground font-bold text-lg hover:opacity-90 transition-all shadow-lg">Contact Sales</a>
+              </div>
+            </div>
+          </div>
+
+          {/* Additional Info */}
+          <div className="max-w-4xl mx-auto p-6 rounded-2xl border border-border/60 card-gradient">
+            <h3 className="text-xl font-bold mb-4 text-center">All Plans Include</h3>
+            <div className="grid md:grid-cols-2 gap-4 text-sm text-muted-foreground">
+              <div>▣ GST invoices provided for all plans</div>
+              <div>▣ Optional hardware integration available</div>
+              <div>▣ PhonePe UPI supported on all plans</div>
+              <div>▣ Offline-first sync capabilities</div>
+              <div>▣ India data residency option available</div>
+              <div>▣ Regular feature updates</div>
             </div>
           </div>
         </div>
