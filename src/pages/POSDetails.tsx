@@ -5,8 +5,17 @@ import {
   ShoppingCart, Users, TrendingUp, Package, 
   CreditCard, Calendar, UserCog, FileText,
   Zap, Shield, Cloud, BarChart3, MessageSquare,
-  Clock, Database, Smartphone
+  Clock, Database, Smartphone, Phone
 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 import posDashboard from "@/assets/pos-dashboard.png";
 import posSales from "@/assets/pos-sales.png";
 import posStations from "@/assets/pos-stations.png";
@@ -347,6 +356,7 @@ const pricingPlans = [
 
 const POSDetails = () => {
   const [activeFilter, setActiveFilter] = useState<'monthly' | 'quarterly' | '6months' | 'annual' | 'lifetime' | 'all'>('all');
+  const [demoDialogOpen, setDemoDialogOpen] = useState(false);
 
   useEffect(() => {
     document.title = "POS Software for Gaming Lounge & Snooker Club | Complete Features | Cuephoria Tech";
@@ -363,6 +373,17 @@ const POSDetails = () => {
   const filteredPlans = activeFilter === 'all' 
     ? pricingPlans 
     : pricingPlans.filter(plan => plan.category === activeFilter);
+
+  const handleDemoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setDemoDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setDemoDialogOpen(false);
+    // Redirect to contact page after dialog closes
+    window.location.href = '/#contact';
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -387,9 +408,8 @@ const POSDetails = () => {
             </p>
             <div className="flex flex-wrap gap-4 justify-center pt-4">
               <a
-                href="https://admin.cuephoria.in"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
+                onClick={handleDemoClick}
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-primary-foreground font-semibold transition-all duration-300 shadow-lg hover:shadow-primary/50"
               >
                 <Zap className="w-5 h-5" />
@@ -775,9 +795,8 @@ const POSDetails = () => {
             </p>
             <div className="flex flex-wrap gap-4 justify-center pt-4">
               <a
-                href="https://admin.cuephoria.in"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
+                onClick={handleDemoClick}
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-primary-foreground font-semibold transition-all duration-300 shadow-lg hover:shadow-primary/50"
               >
                 <Zap className="w-5 h-5" />
@@ -828,6 +847,41 @@ const POSDetails = () => {
           </div>
         </div>
       </section>
+
+      {/* Demo Dialog */}
+      <Dialog open={demoDialogOpen} onOpenChange={(open) => {
+        if (!open) {
+          handleDialogClose();
+        }
+      }}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-center">Demo Access Required</DialogTitle>
+            <DialogDescription className="text-center pt-2 text-base">
+              Please reach out to the sales team <span className="font-semibold">8637625155</span> to get access for the demo.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="py-4">
+            <div className="flex items-center justify-center gap-3 p-4 rounded-lg bg-primary/10 border border-primary/30">
+              <Phone className="w-5 h-5 text-primary" />
+              <a 
+                href="tel:8637625155" 
+                className="text-lg font-semibold text-primary hover:underline"
+              >
+                8637625155
+              </a>
+            </div>
+          </div>
+          <DialogFooter className="sm:justify-center">
+            <Button
+              onClick={handleDialogClose}
+              className="w-full sm:w-auto bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+            >
+              Go to Contact Page
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       <Footer />
     </div>
