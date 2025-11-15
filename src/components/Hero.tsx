@@ -2,6 +2,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Spline from '@splinetool/react-spline';
+import type { Application } from '@splinetool/runtime';
 import logo from "@/assets/cuephoria-logo.png";
 
 const useCountUp = (end: number, durationMs = 1200) => {
@@ -37,6 +38,9 @@ const useCountUp = (end: number, durationMs = 1200) => {
 };
 
 const Hero = () => {
+  const splineRef = useRef<Application | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
   const scrollToContact = () => {
     const element = document.getElementById("contact");
     if (element) {
@@ -44,21 +48,42 @@ const Hero = () => {
     }
   };
 
+  const onLoad = (spline: Application) => {
+    splineRef.current = spline;
+    // Ensure the Spline canvas receives mouse events after loading
+    // The overlays have pointer-events-none so they won't block events
+    setTimeout(() => {
+      const container = containerRef.current;
+      if (container) {
+        const canvas = container.querySelector('canvas');
+        if (canvas) {
+          // Ensure canvas can receive pointer events
+          canvas.style.pointerEvents = 'auto';
+          canvas.style.cursor = 'default';
+        }
+      }
+    }, 100);
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Spline 3D Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 w-full h-full">
+        <div 
+          ref={containerRef}
+          className="absolute inset-0 w-full h-full pointer-events-auto"
+        >
           <Spline 
             scene="https://prod.spline.design/zYbX3Qo-ZEfBiOvq/scene.splinecode"
             className="w-full h-full"
+            onLoad={onLoad}
           />
         </div>
         {/* Purple theme overlay to match website aesthetic */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none" />
         {/* Purple tint overlay to blend with theme */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 pointer-events-none" />
       </div>
 
       {/* Floating Elements */}
