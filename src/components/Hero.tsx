@@ -40,6 +40,7 @@ const useCountUp = (end: number, durationMs = 1200) => {
 const Hero = () => {
   const splineRef = useRef<Application | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const [splineLoaded, setSplineLoaded] = useState(false);
 
   const scrollToContact = () => {
     const element = document.getElementById("contact");
@@ -50,7 +51,45 @@ const Hero = () => {
 
   const onLoad = (spline: Application) => {
     splineRef.current = spline;
+    setSplineLoaded(true);
   };
+
+  useEffect(() => {
+    if (!splineLoaded) return;
+
+    // Add cursor interaction to the Spline scene
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!splineRef.current || !containerRef.current) return;
+
+      const canvas = containerRef.current.querySelector('canvas') as HTMLCanvasElement;
+      if (!canvas) return;
+
+      const rect = canvas.getBoundingClientRect();
+      
+      // Calculate normalized coordinates (-1 to 1) for Spline
+      const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      const y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+      // Update mouse position in Spline scene
+      // This works if the scene has cursor interaction configured
+      try {
+        const app = splineRef.current as any;
+        if (app.setMousePosition) {
+          app.setMousePosition(x, y);
+        } else if (app.mouse) {
+          app.mouse.x = x;
+          app.mouse.y = y;
+        }
+      } catch (err) {
+        // Silently fail if API doesn't exist
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [splineLoaded]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
