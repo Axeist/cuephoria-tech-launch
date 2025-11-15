@@ -209,18 +209,25 @@ All colors MUST be HSL.
   @apply rounded-lg my-6;
 }
 
-/* Hide Spline watermark/attribution */
-a[href*="spline.design"],
+/* Hide Spline watermark/attribution - Aggressive hiding */
+a[href*="spline"],
 a[href*="splinetool"],
+a[href*="spline.design"],
 div[class*="spline"] a,
 div[id*="spline"] a,
 iframe[src*="spline"] + *,
-canvas + a[href*="spline"],
-canvas ~ a {
+canvas + a,
+canvas ~ a,
+a[target="_blank"]:has(img[src*="spline"]) {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
   position: absolute !important;
   left: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  z-index: -9999 !important;
 }

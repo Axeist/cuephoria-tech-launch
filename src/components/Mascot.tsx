@@ -18,41 +18,62 @@ const Mascot = () => {
   }, []);
 
   useEffect(() => {
-    // Hide Spline watermark after component loads
+    // Aggressively hide Spline watermark
     const hideWatermark = () => {
-      if (containerRef.current) {
-        // Find and hide any links or elements with Spline attribution
-        const links = containerRef.current.querySelectorAll('a[href*="spline"], a[href*="splinetool"]');
-        links.forEach(link => {
-          (link as HTMLElement).style.display = 'none';
-          (link as HTMLElement).style.visibility = 'hidden';
-          (link as HTMLElement).style.opacity = '0';
-        });
-
-        // Also check for any text containing "Built with" or "Made with"
-        const walker = document.createTreeWalker(
-          containerRef.current,
-          NodeFilter.SHOW_TEXT,
-          null
-        );
-        let node;
-        while (node = walker.nextNode()) {
-          if (node.textContent?.includes('Built with Spline') || 
-              node.textContent?.includes('Made with Spline')) {
-            const parent = node.parentElement;
-            if (parent) {
-              parent.style.display = 'none';
-            }
-          }
+      // Search entire document, not just container
+      const allLinks = document.querySelectorAll('a');
+      allLinks.forEach(link => {
+        const href = link.getAttribute('href') || '';
+        const text = link.textContent || '';
+        if (href.includes('spline') || href.includes('splinetool') || 
+            text.includes('Built with') || text.includes('Made with')) {
+          (link as HTMLElement).style.cssText = 'display: none !important; visibility: hidden !important; opacity: 0 !important; position: absolute !important; left: -9999px !important; pointer-events: none !important;';
+          link.remove();
         }
-      }
+      });
+
+      // Find and remove any divs containing Spline attribution
+      const allDivs = document.querySelectorAll('div');
+      allDivs.forEach(div => {
+        const text = div.textContent || '';
+        if (text.includes('Built with Spline') || text.includes('Made with Spline')) {
+          (div as HTMLElement).style.cssText = 'display: none !important; visibility: hidden !important; opacity: 0 !important;';
+          div.remove();
+        }
+      });
+
+      // Target Spline-specific elements
+      const splineElements = document.querySelectorAll('[class*="spline"], [id*="spline"]');
+      splineElements.forEach(el => {
+        const text = el.textContent || '';
+        if (text.includes('Built with') || text.includes('Made with')) {
+          (el as HTMLElement).style.cssText = 'display: none !important; visibility: hidden !important; opacity: 0 !important;';
+        }
+      });
     };
 
-    // Run immediately and also after a delay to catch dynamically added elements
+    // Run immediately
     hideWatermark();
-    const interval = setInterval(hideWatermark, 500);
     
-    return () => clearInterval(interval);
+    // Use MutationObserver to catch dynamically added elements
+    const observer = new MutationObserver(() => {
+      hideWatermark();
+    });
+
+    // Observe the entire document for changes
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: false,
+    });
+
+    // Also run on interval as backup
+    const interval = setInterval(hideWatermark, 100);
+    
+    return () => {
+      clearInterval(interval);
+      observer.disconnect();
+    };
   }, []);
 
   // Don't render on mobile

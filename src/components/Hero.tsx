@@ -60,21 +60,50 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    // Hide Spline watermark
+    // Aggressively hide Spline watermark
     const hideWatermark = () => {
-      if (splineContainerRef.current) {
-        const links = splineContainerRef.current.querySelectorAll('a[href*="spline"], a[href*="splinetool"]');
-        links.forEach(link => {
-          (link as HTMLElement).style.display = 'none';
-          (link as HTMLElement).style.visibility = 'hidden';
-          (link as HTMLElement).style.opacity = '0';
-        });
-      }
+      // Search entire document
+      const allLinks = document.querySelectorAll('a');
+      allLinks.forEach(link => {
+        const href = link.getAttribute('href') || '';
+        const text = link.textContent || '';
+        if (href.includes('spline') || href.includes('splinetool') || 
+            text.includes('Built with') || text.includes('Made with')) {
+          (link as HTMLElement).style.cssText = 'display: none !important; visibility: hidden !important; opacity: 0 !important; position: absolute !important; left: -9999px !important; pointer-events: none !important;';
+          link.remove();
+        }
+      });
+
+      // Find and remove any divs containing Spline attribution
+      const allDivs = document.querySelectorAll('div');
+      allDivs.forEach(div => {
+        const text = div.textContent || '';
+        if (text.includes('Built with Spline') || text.includes('Made with Spline')) {
+          (div as HTMLElement).style.cssText = 'display: none !important; visibility: hidden !important; opacity: 0 !important;';
+          div.remove();
+        }
+      });
     };
 
     hideWatermark();
-    const interval = setInterval(hideWatermark, 500);
-    return () => clearInterval(interval);
+    
+    // Use MutationObserver to catch dynamically added elements
+    const observer = new MutationObserver(() => {
+      hideWatermark();
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: false,
+    });
+
+    const interval = setInterval(hideWatermark, 100);
+    
+    return () => {
+      clearInterval(interval);
+      observer.disconnect();
+    };
   }, []);
 
   return (
