@@ -5,7 +5,9 @@ const Spline = lazy(() => import('@splinetool/react-spline'));
 
 const Mascot = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [bgColor, setBgColor] = useState('hsl(var(--background))');
 
   useEffect(() => {
     // Detect mobile and hide mascot on mobile
@@ -15,6 +17,36 @@ const Mascot = () => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    // Dynamically get background color to match seamlessly
+    const updateBgColor = () => {
+      if (containerRef.current) {
+        const computedStyle = getComputedStyle(document.documentElement);
+        const bg = computedStyle.getPropertyValue('--background').trim();
+        if (bg) {
+          setBgColor(`hsl(${bg})`);
+        }
+        
+        // Also try to get the actual background from body
+        const bodyStyle = getComputedStyle(document.body);
+        const bodyBg = bodyStyle.backgroundColor;
+        if (bodyBg && bodyBg !== 'rgba(0, 0, 0, 0)') {
+          setBgColor(bodyBg);
+        }
+      }
+    };
+
+    updateBgColor();
+    // Update on scroll to catch any background changes
+    window.addEventListener('scroll', updateBgColor, { passive: true });
+    window.addEventListener('resize', updateBgColor);
+    
+    return () => {
+      window.removeEventListener('scroll', updateBgColor);
+      window.removeEventListener('resize', updateBgColor);
+    };
   }, []);
 
   useEffect(() => {
@@ -131,15 +163,18 @@ const Mascot = () => {
               willChange: 'transform',
             }}
           />
-          {/* Overlay to hide watermark in bottom right corner */}
+          {/* Overlay to hide watermark in bottom right corner - seamless blend */}
           <div 
+            ref={overlayRef}
             className="absolute bottom-0 right-0 pointer-events-none"
             style={{
               zIndex: 99999,
-              width: '180px',
-              height: '50px',
-              background: 'hsl(var(--background))',
+              width: '140px',
+              height: '35px',
+              background: bgColor,
+              backgroundImage: `linear-gradient(to top, ${bgColor} 0%, ${bgColor} 70%, transparent 100%)`,
               borderRadius: '8px 0 0 0',
+              transition: 'background-color 0.3s ease',
             }}
           />
         </div>
@@ -149,9 +184,11 @@ const Mascot = () => {
         className="absolute bottom-0 right-0 pointer-events-none"
         style={{
           zIndex: 100000,
-          width: '200px',
-          height: '60px',
-          background: 'hsl(var(--background))',
+          width: '150px',
+          height: '40px',
+          background: bgColor,
+          backgroundImage: `linear-gradient(to top, ${bgColor} 0%, ${bgColor} 80%, transparent 100%)`,
+          transition: 'background-color 0.3s ease',
         }}
       />
     </div>
