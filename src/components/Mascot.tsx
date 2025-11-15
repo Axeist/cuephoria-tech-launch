@@ -26,9 +26,14 @@ const Mascot = () => {
         const href = link.getAttribute('href') || '';
         const text = link.textContent || '';
         if (href.includes('spline') || href.includes('splinetool') || 
-            text.includes('Built with') || text.includes('Made with')) {
-          (link as HTMLElement).style.cssText = 'display: none !important; visibility: hidden !important; opacity: 0 !important; position: absolute !important; left: -9999px !important; pointer-events: none !important;';
-          link.remove();
+            text.includes('Built with') || text.includes('Made with') ||
+            text.includes('Spline')) {
+          (link as HTMLElement).style.cssText = 'display: none !important; visibility: hidden !important; opacity: 0 !important; position: absolute !important; left: -9999px !important; pointer-events: none !important; width: 0 !important; height: 0 !important;';
+          try {
+            link.remove();
+          } catch (e) {
+            // Ignore if can't remove
+          }
         }
       });
 
@@ -36,13 +41,38 @@ const Mascot = () => {
       const allDivs = document.querySelectorAll('div');
       allDivs.forEach(div => {
         const text = div.textContent || '';
-        if (text.includes('Built with Spline') || text.includes('Made with Spline')) {
-          (div as HTMLElement).style.cssText = 'display: none !important; visibility: hidden !important; opacity: 0 !important;';
-          div.remove();
+        if (text.includes('Built with Spline') || text.includes('Made with Spline') ||
+            text.includes('Built with') && text.includes('Spline')) {
+          (div as HTMLElement).style.cssText = 'display: none !important; visibility: hidden !important; opacity: 0 !important; width: 0 !important; height: 0 !important;';
+          try {
+            div.remove();
+          } catch (e) {
+            // Ignore if can't remove
+          }
         }
       });
 
-      // Target Spline-specific elements
+      // Hide any iframes that might contain the watermark
+      const iframes = document.querySelectorAll('iframe');
+      iframes.forEach(iframe => {
+        try {
+          // Try to access iframe content (may fail due to CORS)
+          const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+          if (iframeDoc) {
+            const iframeLinks = iframeDoc.querySelectorAll('a');
+            iframeLinks.forEach(link => {
+              const text = link.textContent || '';
+              if (text.includes('Built with') || text.includes('Spline')) {
+                (link as HTMLElement).style.cssText = 'display: none !important;';
+              }
+            });
+          }
+        } catch (e) {
+          // CORS - can't access iframe content, that's okay
+        }
+      });
+
+      // Target any element with Spline in class/id
       const splineElements = document.querySelectorAll('[class*="spline"], [id*="spline"]');
       splineElements.forEach(el => {
         const text = el.textContent || '';
@@ -67,8 +97,8 @@ const Mascot = () => {
       attributes: false,
     });
 
-    // Also run on interval as backup
-    const interval = setInterval(hideWatermark, 100);
+    // Also run on interval as backup - more frequent
+    const interval = setInterval(hideWatermark, 50);
     
     return () => {
       clearInterval(interval);
@@ -88,10 +118,11 @@ const Mascot = () => {
       style={{
         // Ensure it doesn't block interactions
         pointerEvents: 'none',
+        overflow: 'hidden',
       }}
     >
       <Suspense fallback={null}>
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full" style={{ overflow: 'hidden' }}>
           <Spline 
             scene="https://prod.spline.design/JW4c8s7goFnZN-mv/scene.splinecode"
             className="w-full h-full"
@@ -100,8 +131,29 @@ const Mascot = () => {
               willChange: 'transform',
             }}
           />
+          {/* Overlay to hide watermark in bottom right corner */}
+          <div 
+            className="absolute bottom-0 right-0 pointer-events-none"
+            style={{
+              zIndex: 99999,
+              width: '180px',
+              height: '50px',
+              background: 'hsl(var(--background))',
+              borderRadius: '8px 0 0 0',
+            }}
+          />
         </div>
       </Suspense>
+      {/* Additional overlay div to cover watermark area - outside Spline container */}
+      <div 
+        className="absolute bottom-0 right-0 pointer-events-none"
+        style={{
+          zIndex: 100000,
+          width: '200px',
+          height: '60px',
+          background: 'hsl(var(--background))',
+        }}
+      />
     </div>
   );
 };

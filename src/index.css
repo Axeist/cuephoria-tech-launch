@@ -209,7 +209,7 @@ All colors MUST be HSL.
   @apply rounded-lg my-6;
 }
 
-/* Hide Spline watermark/attribution - Aggressive hiding */
+/* Hide Spline watermark/attribution - Ultra aggressive hiding */
 a[href*="spline"],
 a[href*="splinetool"],
 a[href*="spline.design"],
@@ -218,7 +218,10 @@ div[id*="spline"] a,
 iframe[src*="spline"] + *,
 canvas + a,
 canvas ~ a,
-a[target="_blank"]:has(img[src*="spline"]) {
+a[target="_blank"]:has(img[src*="spline"]),
+a:has-text("Built"),
+a:has-text("Spline"),
+div:has(a[href*="spline"]) {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
@@ -230,4 +233,25 @@ a[target="_blank"]:has(img[src*="spline"]) {
   overflow: hidden !important;
   clip: rect(0, 0, 0, 0) !important;
   z-index: -9999 !important;
+  transform: scale(0) !important;
+}
+
+/* Hide watermark area in Spline containers */
+div[class*="spline"],
+div[id*="spline"] {
+  position: relative;
+  overflow: hidden;
+}
+
+div[class*="spline"]::after,
+div[id*="spline"]::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 200px;
+  height: 60px;
+  background: transparent;
+  z-index: 99999;
+  pointer-events: none;
 }
