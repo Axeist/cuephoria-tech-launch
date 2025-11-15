@@ -1,7 +1,7 @@
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import heroBg from "@/assets/pos-system.jpg";
+import Spline from '@splinetool/react-spline';
 import logo from "@/assets/cuephoria-logo.png";
 
 const useCountUp = (end: number, durationMs = 1200) => {
@@ -46,15 +46,19 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Background */}
+      {/* Spline 3D Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
-        <img
-          src={heroBg}
-          alt="Gaming lounge POS system dashboard with real-time analytics and booking management"
-          className="w-full h-full object-cover opacity-25"
-        />
+        <div className="absolute inset-0 w-full h-full">
+          <Spline 
+            scene="https://prod.spline.design/zYbX3Qo-ZEfBiOvq/scene.splinecode"
+            className="w-full h-full"
+          />
+        </div>
+        {/* Purple theme overlay to match website aesthetic */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+        {/* Purple tint overlay to blend with theme */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
       </div>
 
       {/* Floating Elements */}
