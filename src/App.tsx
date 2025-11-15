@@ -8,6 +8,7 @@ import POSDetails from "./pages/POSDetails";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
+import Mascot from "./components/Mascot";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,8 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        {/* Mascot overlay - appears on all pages */}
+        <Mascot />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
