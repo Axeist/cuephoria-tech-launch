@@ -40,6 +40,7 @@ const useCountUp = (end: number, durationMs = 1200) => {
 const Hero = () => {
   const splineRef = useRef<Application | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const [splineLoaded, setSplineLoaded] = useState(false);
 
   const scrollToContact = () => {
     const element = document.getElementById("contact");
@@ -50,20 +51,75 @@ const Hero = () => {
 
   const onLoad = (spline: Application) => {
     splineRef.current = spline;
-    // Ensure the Spline canvas receives mouse events after loading
-    // The overlays have pointer-events-none so they won't block events
+    
+    // Ensure canvas is set up for interactivity
     setTimeout(() => {
       const container = containerRef.current;
       if (container) {
-        const canvas = container.querySelector('canvas');
+        const canvas = container.querySelector('canvas') as HTMLCanvasElement;
         if (canvas) {
-          // Ensure canvas can receive pointer events
+          // Make sure canvas can receive events
           canvas.style.pointerEvents = 'auto';
-          canvas.style.cursor = 'default';
+          canvas.style.touchAction = 'none';
+          // Ensure canvas is interactive
+          canvas.setAttribute('tabindex', '0');
         }
       }
-    }, 100);
+      setSplineLoaded(true);
+    }, 200);
   };
+
+  useEffect(() => {
+    if (!splineLoaded || !containerRef.current) return;
+
+    // Forward mouse events to the Spline canvas
+    const handleMouseMove = (e: MouseEvent) => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const canvas = container.querySelector('canvas') as HTMLCanvasElement;
+      if (!canvas) return;
+
+      // Get canvas position
+      const rect = canvas.getBoundingClientRect();
+      
+      // Calculate normalized coordinates (-1 to 1)
+      const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      const y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+      // Create and dispatch mouse event directly on canvas
+      // Use Object.defineProperty to set read-only properties
+      const mouseEvent = new MouseEvent('mousemove', {
+        bubbles: true,
+        cancelable: true,
+        clientX: e.clientX,
+        clientY: e.clientY,
+        screenX: e.screenX,
+        screenY: e.screenY,
+        movementX: e.movementX,
+        movementY: e.movementY,
+      });
+
+      // Dispatch to canvas
+      canvas.dispatchEvent(mouseEvent);
+
+      // Also try to set mouse position via Spline API if available
+      if (splineRef.current) {
+        try {
+          // Some Spline scenes use this method
+          (splineRef.current as any).setMousePosition?.(x, y);
+        } catch (err) {
+          // Ignore if method doesn't exist
+        }
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [splineLoaded]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -93,7 +149,7 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 z-10 pt-20">
+      <div className="container mx-auto px-4 z-10 pt-20 relative">
         <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in-up">
           <div className="mx-auto w-28 h-28 rounded-2xl overflow-hidden border border-primary/40 shadow-[0_0_40px_rgba(140,60,255,0.6)]">
             <img src={logo} alt="Cuephoria" className="w-full h-full object-cover" />
