@@ -208,3 +208,19 @@ All colors MUST be HSL.
 .prose img {
   @apply rounded-lg my-6;
 }
+
+/* Hide Spline watermark/attribution */
+a[href*="spline.design"],
+a[href*="splinetool"],
+div[class*="spline"] a,
+div[id*="spline"] a,
+iframe[src*="spline"] + *,
+canvas + a[href*="spline"],
+canvas ~ a {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+}

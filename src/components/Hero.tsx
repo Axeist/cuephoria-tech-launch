@@ -40,6 +40,7 @@ const useCountUp = (end: number, durationMs = 1200) => {
 
 const Hero = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const splineContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollToContact = () => {
     const element = document.getElementById("contact");
@@ -58,11 +59,29 @@ const Hero = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  useEffect(() => {
+    // Hide Spline watermark
+    const hideWatermark = () => {
+      if (splineContainerRef.current) {
+        const links = splineContainerRef.current.querySelectorAll('a[href*="spline"], a[href*="splinetool"]');
+        links.forEach(link => {
+          (link as HTMLElement).style.display = 'none';
+          (link as HTMLElement).style.visibility = 'hidden';
+          (link as HTMLElement).style.opacity = '0';
+        });
+      }
+    };
+
+    hideWatermark();
+    const interval = setInterval(hideWatermark, 500);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Spline 3D Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <div ref={splineContainerRef} className="absolute inset-0 w-full h-full overflow-hidden">
           <Suspense fallback={<div className="w-full h-full bg-background" />}>
             <div 
               className="absolute inset-0 w-full h-full"
