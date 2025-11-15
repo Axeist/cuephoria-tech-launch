@@ -1,9 +1,10 @@
 import { ArrowRight, Sparkles } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { Button } from "@/components/ui/button";
-import Spline from '@splinetool/react-spline';
-import type { Application } from '@splinetool/runtime';
 import logo from "@/assets/cuephoria-logo.png";
+
+// Lazy load Spline for better performance
+const Spline = lazy(() => import('@splinetool/react-spline'));
 
 const useCountUp = (end: number, durationMs = 1200) => {
   const [value, setValue] = useState(0);
@@ -38,9 +39,7 @@ const useCountUp = (end: number, durationMs = 1200) => {
 };
 
 const Hero = () => {
-  const splineRef = useRef<Application | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const [splineLoaded, setSplineLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const scrollToContact = () => {
     const element = document.getElementById("contact");
@@ -49,61 +48,45 @@ const Hero = () => {
     }
   };
 
-  const onLoad = (spline: Application) => {
-    splineRef.current = spline;
-    setSplineLoaded(true);
-  };
-
   useEffect(() => {
-    if (!splineLoaded) return;
-
-    // Add cursor interaction to the Spline scene
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!splineRef.current || !containerRef.current) return;
-
-      const canvas = containerRef.current.querySelector('canvas') as HTMLCanvasElement;
-      if (!canvas) return;
-
-      const rect = canvas.getBoundingClientRect();
-      
-      // Calculate normalized coordinates (-1 to 1) for Spline
-      const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-      const y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-
-      // Update mouse position in Spline scene
-      // This works if the scene has cursor interaction configured
-      try {
-        const app = splineRef.current as any;
-        if (app.setMousePosition) {
-          app.setMousePosition(x, y);
-        } else if (app.mouse) {
-          app.mouse.x = x;
-          app.mouse.y = y;
-        }
-      } catch (err) {
-        // Silently fail if API doesn't exist
-      }
+    // Detect mobile and optimize accordingly
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
     };
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, [splineLoaded]);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Spline 3D Background */}
       <div className="absolute inset-0 z-0">
-        <div 
-          ref={containerRef}
-          className="absolute inset-0 w-full h-full pointer-events-auto"
-        >
-          <Spline 
-            scene="https://prod.spline.design/zYbX3Qo-ZEfBiOvq/scene.splinecode"
-            className="w-full h-full"
-            onLoad={onLoad}
-          />
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          <Suspense fallback={<div className="w-full h-full bg-background" />}>
+            <div 
+              className="absolute inset-0 w-full h-full"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <div
+                className="w-full h-full"
+                style={{
+                  transform: isMobile ? 'scale(1.1) translateY(5%)' : 'scale(1)',
+                  transformOrigin: 'center center',
+                  willChange: 'transform',
+                }}
+              >
+                <Spline 
+                  scene="https://prod.spline.design/zYbX3Qo-ZEfBiOvq/scene.splinecode"
+                  className="w-full h-full"
+                />
+              </div>
+            </div>
+          </Suspense>
         </div>
         {/* Purple theme overlay to match website aesthetic */}
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background pointer-events-none" />
