@@ -7,7 +7,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import brightButtonsLogo from "@/assets/client-logos/bright-buttons-logo.png";
 
 export interface Client {
   id: string;
@@ -43,7 +42,7 @@ const clients: Client[] = [
   {
     id: "bright-buttons",
     name: "Bright Buttons",
-    logo: brightButtonsLogo,
+    logo: "https://via.placeholder.com/200x200/F5E6D3/FF6B35?text=Bright+Buttons",
     location: "Trichy, India",
     address: "Eco-friendly clothing brand specializing in handmade, nature-inspired garments",
     phone: "+91 99526 55555",
