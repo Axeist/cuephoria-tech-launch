@@ -2,8 +2,26 @@ import { Linkedin, Mail } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import founderImage from "@/assets/founder-ranjith.jpg";
 import cofounderImage from "@/assets/cofounder-krishna.jpg";
+import headOpsImage from "@/assets/head-operations-mallesh.jpg";
 
-const team = [
+// Type definition for achievements
+type Achievement = string | { text: string; image?: string };
+
+interface TeamMember {
+  name: string;
+  role: string;
+  image: string;
+  phone: string;
+  bio: string;
+  expertise: string;
+  achievements: Achievement | Achievement[];
+  specialization: string;
+  email?: string;
+  linkedin?: string;
+  isLeadership?: boolean; // Distinguish between leadership and team members
+}
+
+const leadership: TeamMember[] = [
   {
     name: "Mr. Ranjith Kumar S",
     role: "Founder & CEO",
@@ -15,6 +33,7 @@ const team = [
     specialization: "Tech & Application Development",
     email: "ranjithkirloskar@gmail.com",
     linkedin: "https://www.linkedin.com/in/ranjithkumars-pro",
+    isLeadership: true,
   },
   {
     name: "Mr. Krishna M Bajaj",
@@ -27,10 +46,173 @@ const team = [
     specialization: "Sales & Marketing",
     email: "Krishnambaja@gmail.com",
     linkedin: "https://www.linkedin.com/in/krish-bajaj-45115413a",
+    isLeadership: true,
   },
 ];
 
+const teamMembers: TeamMember[] = [
+  {
+    name: "Mr. G. Mallesh",
+    role: "Head of Operations",
+    image: headOpsImage,
+    phone: "+91 8148102255",
+    bio: "At Cuephoria Tech, operational excellence is not just a goal—it is a discipline. As Head of Operations, Mallesh brings a rare convergence of technical foresight and strategic execution to our leadership team. A distinguished technologist and innovator, he has built a reputation for transforming complex challenges into scalable, real-world solutions at the intersection of Software, IoT, and Applied AI.",
+    expertise: "Mallesh's background is defined by high-impact performance. From founding Techno Zenith to securing National and State-level hackathon victories, he has consistently demonstrated an ability to navigate high-pressure environments with precision. His pending patent for agricultural automation and his history of mentoring over 1,000 technologists underscores a leadership style that is both innovative and deeply grounded in knowledge sharing. At Cuephoria Tech, Mallesh architects the systems that allow our vision to thrive, ensuring that every project bridges the gap between ambitious concepts and flawless delivery.",
+    achievements: [
+      // Add achievements with images here when available
+      // Example format:
+      // { text: "Founded Techno Zenith", image: "@/assets/achievements/techno-zenith.jpg" },
+      // { text: "National Hackathon Winner", image: "@/assets/achievements/national-hackathon.jpg" },
+    ],
+    specialization: "Operations & Innovation",
+    email: "mallesh@cuephoria.in",
+    linkedin: "#",
+    isLeadership: false,
+  },
+  // Add more team members here in the future
+];
+
 const Team = () => {
+  const renderAchievements = (achievements: Achievement | Achievement[]) => {
+    // Handle string achievements (for existing members)
+    if (typeof achievements === "string") {
+      return (
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          {achievements}
+        </p>
+      );
+    }
+
+    // Handle array of achievements
+    const achievementsArray = Array.isArray(achievements) ? achievements : [achievements];
+    
+    // If empty array, return placeholder
+    if (achievementsArray.length === 0) {
+      return (
+        <p className="text-xs text-muted-foreground leading-relaxed italic">
+          Achievements to be added...
+        </p>
+      );
+    }
+    
+    return (
+      <div className="space-y-3">
+        {achievementsArray.map((achievement, idx) => {
+          if (typeof achievement === "string") {
+            return (
+              <div key={idx} className="flex items-start gap-2">
+                <span className="text-primary mt-0.5">•</span>
+                <p className="text-xs text-muted-foreground leading-relaxed flex-1">
+                  {achievement}
+                </p>
+              </div>
+            );
+          }
+          
+          // Achievement with image
+          return (
+            <div key={idx} className="flex gap-3 items-start group/achievement">
+              {achievement.image && (
+                <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border border-primary/20 group-hover/achievement:border-primary/50 transition-colors shadow-sm">
+                  <img
+                    src={achievement.image}
+                    alt={achievement.text}
+                    className="w-full h-full object-cover group-hover/achievement:scale-110 transition-transform duration-300"
+                  />
+                </div>
+              )}
+              <div className="flex-1 min-w-0">
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  {achievement.text}
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+
+  const renderMemberCard = (member: TeamMember, index: number, isLeadership: boolean) => {
+    const imageHeight = isLeadership ? "h-[420px] md:h-[460px]" : "h-[300px] md:h-[320px]";
+    const padding = isLeadership ? "p-6" : "p-4";
+    const titleSize = isLeadership ? "text-2xl" : "text-xl";
+    const roleSize = isLeadership ? "text-lg" : "text-base";
+    const bioTextSize = isLeadership ? "text-sm" : "text-xs";
+    
+    // Image positioning based on member
+    let imagePosition = "object-center";
+    if (isLeadership) {
+      imagePosition = index === 0 ? "object-[50%_42%]" : "object-[50%_11%]";
+    } else {
+      imagePosition = "object-center";
+    }
+
+    return (
+      <Card
+        key={index}
+        className="card-gradient border-border/50 hover:border-primary/50 transition-all duration-500 overflow-hidden group hover:shadow-[0_0_40px_rgba(0,200,255,0.3)] animate-fade-in-up"
+        style={{ animationDelay: `${index * 0.2}s` }}
+      >
+        <CardContent className="p-0">
+          <div className="relative overflow-hidden">
+            <img
+              src={member.image}
+              alt={member.name}
+              className={`w-full ${imageHeight} object-cover ${imagePosition} group-hover:scale-105 transition-transform duration-500`}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
+            
+            {/* Floating Badge */}
+            <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-primary/90 backdrop-blur-sm">
+              <span className="text-xs font-semibold text-background">{member.specialization}</span>
+            </div>
+          </div>
+
+          <div className={`${padding} space-y-4`}>
+            <div>
+              <h3 className={`${titleSize} font-bold text-foreground mb-1 group-hover:text-gradient transition-colors`}>
+                {member.name}
+              </h3>
+              <p className={`text-gradient-secondary font-semibold ${roleSize} mb-2`}>{member.role}</p>
+              <p className={`${bioTextSize} text-muted-foreground`}>📞 {member.phone}</p>
+            </div>
+
+            <div className={`space-y-3 ${bioTextSize}`}>
+              <p className="text-muted-foreground leading-relaxed">
+                {member.bio}
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                {member.expertise}
+              </p>
+              <div className="pt-2">
+                <p className="text-xs font-semibold text-primary mb-2">Key Achievements:</p>
+                {renderAchievements(member.achievements)}
+              </div>
+            </div>
+
+            <div className="flex gap-3 pt-2">
+              <a
+                href={`mailto:${member.email ?? "contact@cuephoria.in"}`}
+                className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 hover:from-primary/40 hover:to-secondary/40 border border-primary/30 flex items-center justify-center transition-all duration-300 hover:scale-110 group/icon"
+              >
+                <Mail className="w-5 h-5 text-primary group-hover/icon:text-foreground transition-colors" />
+              </a>
+              <a
+                href={member.linkedin ?? "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 hover:from-primary/40 hover:to-secondary/40 border border-primary/30 flex items-center justify-center transition-all duration-300 hover:scale-110 group/icon"
+              >
+                <Linkedin className="w-5 h-5 text-primary group-hover/icon:text-foreground transition-colors" />
+              </a>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  };
+
   return (
     <section id="team" className="py-24 relative">
       <div className="container mx-auto px-4">
@@ -43,71 +225,28 @@ const Team = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {team.map((member, index) => (
-            <Card
-              key={index}
-              className="card-gradient border-border/50 hover:border-primary/50 transition-all duration-500 overflow-hidden group hover:shadow-[0_0_40px_rgba(0,200,255,0.3)] animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.2}s` }}
-            >
-              <CardContent className="p-0">
-                <div className="relative overflow-hidden">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className={`w-full h-[420px] md:h-[460px] object-cover ${index === 0 ? "object-[50%_42%]" : "object-[50%_11%]"} group-hover:scale-105 transition-transform duration-500`}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
-                  
-                  {/* Floating Badge */}
-                  <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-primary/90 backdrop-blur-sm">
-                    <span className="text-xs font-semibold text-background">{member.specialization}</span>
-                  </div>
-                </div>
-
-                <div className="p-6 space-y-4">
-                  <div>
-                    <h3 className="text-2xl font-bold text-foreground mb-1 group-hover:text-gradient transition-colors">
-                      {member.name}
-                    </h3>
-                    <p className="text-gradient-secondary font-semibold text-lg mb-2">{member.role}</p>
-                    <p className="text-sm text-muted-foreground">📞 {member.phone}</p>
-                  </div>
-
-                  <div className="space-y-3 text-sm">
-                    <p className="text-muted-foreground leading-relaxed">
-                      {member.bio}
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {member.expertise}
-                    </p>
-                    <div className="pt-2">
-                      <p className="text-xs font-semibold text-primary mb-2">Key Achievements:</p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        {member.achievements}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-3 pt-2">
-                    <a
-                      href={`mailto:${(member as any).email ?? "contact@cuephoria.in"}`}
-                      className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 hover:from-primary/40 hover:to-secondary/40 border border-primary/30 flex items-center justify-center transition-all duration-300 hover:scale-110 group/icon"
-                    >
-                      <Mail className="w-5 h-5 text-primary group-hover/icon:text-foreground transition-colors" />
-                    </a>
-                    <a
-                      href={(member as any).linkedin ?? "#"}
-                      className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 hover:from-primary/40 hover:to-secondary/40 border border-primary/30 flex items-center justify-center transition-all duration-300 hover:scale-110 group/icon"
-                    >
-                      <Linkedin className="w-5 h-5 text-primary group-hover/icon:text-foreground transition-colors" />
-                    </a>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        {/* Leadership Section */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
+          {leadership.map((member, index) => renderMemberCard(member, index, true))}
         </div>
+
+        {/* Team Members Section */}
+        {teamMembers.length > 0 && (
+          <>
+            <div className="text-center mb-12 animate-fade-in-up">
+              <h3 className="text-3xl md:text-4xl font-bold mb-2">
+                Our <span className="text-gradient">Team</span>
+              </h3>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Dedicated professionals bringing expertise and passion to every project
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+              {teamMembers.map((member, index) => renderMemberCard(member, index, false))}
+            </div>
+          </>
+        )}
       </div>
     </section>
   );
