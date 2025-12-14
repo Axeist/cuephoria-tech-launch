@@ -35,7 +35,7 @@ const clients: Client[] = [
   {
     id: "bright-buttons",
     name: "Bright Buttons",
-    logo: "https://via.placeholder.com/200x200/F5E6D3/FF6B35?text=Bright+Buttons",
+    logo: "https://iili.io/fYDDfDb.jpg",
     location: "Trichy, India",
     address: "Eco-friendly clothing brand specializing in handmade, nature-inspired garments",
     phone: "+91 99526 55555",
