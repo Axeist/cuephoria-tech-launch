@@ -1,4 +1,4 @@
-import { Star, MapPin, Phone, Calendar, Package, Globe, ExternalLink } from "lucide-react";
+import { Star, MapPin, Phone, Calendar, Package, Globe, ExternalLink, Mail } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -7,6 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import brightButtonsLogo from "@/assets/client-logos/bright-buttons-logo.png";
 
 export interface Client {
   id: string;
@@ -15,6 +16,7 @@ export interface Client {
   location: string;
   address: string;
   phone: string;
+  email?: string;
   website?: string;
   subscription: string;
   subscriptionDuration?: string;
@@ -38,6 +40,21 @@ const clients: Client[] = [
     rating: 5,
     testimonial: "Cuephoria's POS system has transformed our gaming lounge operations. The real-time analytics and booking management features have significantly improved our customer experience and streamlined our day-to-day operations. Highly recommended for any entertainment venue looking to modernize their business!",
   },
+  {
+    id: "bright-buttons",
+    name: "Bright Buttons",
+    logo: brightButtonsLogo,
+    location: "Trichy, India",
+    address: "Eco-friendly clothing brand specializing in handmade, nature-inspired garments",
+    phone: "+91 99526 55555",
+    email: "support@brightbuttons.in",
+    website: "brightbuttons.in",
+    subscription: "E-commerce Development",
+    subscriptionDuration: "Full Solution",
+    purchaseDate: "December 2025",
+    rating: 5,
+    testimonial: "Working with Cuephoria Tech was an absolute delight! They transformed our vision into a stunning e-commerce platform that perfectly captures the essence of Bright Buttons. The website beautifully showcases our eco-friendly, handmade garments and makes it effortless for customers to discover our unique, nature-inspired collections. The team's attention to detail and understanding of our brand philosophy exceeded our expectations. Our online presence has never been stronger!",
+  },
 ];
 
 const Clients = () => {
@@ -54,10 +71,10 @@ const Clients = () => {
             <span className="text-sm font-semibold text-primary">OUR CLIENTS</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Trusted by <span className="text-gradient">Leading Venues</span>
+            Trusted by <span className="text-gradient">Leading Businesses</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Join the growing community of gaming lounges and entertainment venues powered by Cuephoria
+            Join the growing community of businesses powered by Cuephoria's innovative solutions
           </p>
         </div>
 
@@ -138,6 +155,21 @@ const Clients = () => {
                             {client.phone}
                           </a>
                         </div>
+
+                        {/* Email */}
+                        {client.email && (
+                          <div className="flex items-center gap-3 mb-4 p-3 rounded-lg bg-background/30 border border-border/30 group-hover:border-primary/30 transition-all">
+                            <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0">
+                              <Mail className="w-5 h-5 text-primary" />
+                            </div>
+                            <a
+                              href={`mailto:${client.email}`}
+                              className="font-semibold text-foreground hover:text-primary transition-colors text-sm break-all"
+                            >
+                              {client.email}
+                            </a>
+                          </div>
+                        )}
 
                         {/* Website */}
                         {client.website && (
