@@ -48,9 +48,6 @@ const leadership: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/krish-bajaj-45115413a",
     isLeadership: true,
   },
-];
-
-const teamMembers: TeamMember[] = [
   {
     name: "Mr. G. Mallesh",
     role: "Head of Operations",
@@ -67,8 +64,12 @@ const teamMembers: TeamMember[] = [
     specialization: "Operations & Innovation",
     email: "mallesh@cuephoria.in",
     linkedin: "#",
-    isLeadership: false,
+    isLeadership: true,
   },
+];
+
+// Team members section - hidden for now but kept for future use
+const teamMembers: TeamMember[] = [
   // Add more team members here in the future
 ];
 
@@ -143,7 +144,13 @@ const Team = () => {
     // Image positioning based on member
     let imagePosition = "object-center";
     if (isLeadership) {
-      imagePosition = index === 0 ? "object-[50%_42%]" : "object-[50%_11%]";
+      if (index === 0) {
+        imagePosition = "object-[50%_42%]";
+      } else if (index === 1) {
+        imagePosition = "object-[50%_11%]";
+      } else {
+        imagePosition = "object-center";
+      }
     } else {
       imagePosition = "object-center";
     }
@@ -226,12 +233,12 @@ const Team = () => {
         </div>
 
         {/* Leadership Section */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
           {leadership.map((member, index) => renderMemberCard(member, index, true))}
         </div>
 
-        {/* Team Members Section */}
-        {teamMembers.length > 0 && (
+        {/* Team Members Section - Hidden for now, uncomment when ready to show */}
+        {false && teamMembers.length > 0 && (
           <>
             <div className="text-center mb-12 animate-fade-in-up">
               <h3 className="text-3xl md:text-4xl font-bold mb-2">
