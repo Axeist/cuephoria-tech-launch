@@ -62,9 +62,9 @@ const Footer = () => {
             <h4 className="font-bold text-foreground mb-4">Get in Touch</h4>
             <ul className="space-y-2 text-muted-foreground text-sm">
               <li>
-                <a href="mailto:Contact@cuephoria.in" className="hover:text-primary transition-colors flex items-center gap-2">
+                <a href="mailto:sales@cuephoriatech.in" className="hover:text-primary transition-colors flex items-center gap-2">
                   <Mail className="w-4 h-4" />
-                  Contact@cuephoria.in
+                  sales@cuephoriatech.in
                 </a>
               </li>
               <li className="hover:text-primary transition-colors">+91 8637625155</li>
@@ -102,7 +102,7 @@ const Footer = () => {
                     <DialogHeader>
                       <DialogTitle>Privacy Policy</DialogTitle>
                       <DialogDescription>
-                        We collect only necessary information to operate our services. Sensitive payment data is never stored by us. We use role-based access and industry security practices. You can request data export or deletion at any time by emailing contact@cuephoria.in.
+                        We collect only necessary information to operate our services. Sensitive payment data is never stored by us. We use role-based access and industry security practices. You can request data export or deletion at any time by emailing support@cuephoriatech.in.
                       </DialogDescription>
                     </DialogHeader>
                   </DialogContent>

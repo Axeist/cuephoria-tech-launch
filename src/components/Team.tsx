@@ -31,7 +31,7 @@ const leadership: TeamMember[] = [
     expertise: "As a technology visionary, Ranjith specializes in application development and system architecture, with a particular focus on gaming and entertainment management software. His hands-on approach to product development ensures that every solution addresses real-world operational challenges. Under his leadership, Cuephoria Tech has developed cutting-edge POS systems and management platforms that revolutionize how gaming lounges and entertainment venues operate.",
     achievements: "Pioneer in gaming lounge technology solutions, expert in React & modern web technologies, proven track record in business operations optimization.",
     specialization: "Tech & Application Development",
-    email: "ranjithkirloskar@gmail.com",
+    email: "ranjithkumar@cuephoriatech.in",
     linkedin: "https://www.linkedin.com/in/ranjithkumars-pro",
     isLeadership: true,
   },
@@ -44,7 +44,7 @@ const leadership: TeamMember[] = [
     expertise: "His expertise in sales and marketing strategy is complemented by hands-on operational knowledge gained from running Cuephoria Gaming Lounge, Trichy's premier 8-ball club and gaming destination. This unique perspective allows him to understand the operational needs of entertainment venues from the ground up, making him invaluable in shaping products that truly serve the industry.",
     achievements: "Multi-business owner and operator, expert in snooker club management and gaming lounge operations, master of customer acquisition and retention strategies.",
     specialization: "Sales & Marketing",
-    email: "Krishnambaja@gmail.com",
+    email: "sales@cuephoriatech.in",
     linkedin: "https://www.linkedin.com/in/krish-bajaj-45115413a",
     isLeadership: true,
   },
@@ -62,7 +62,7 @@ const leadership: TeamMember[] = [
       // { text: "National Hackathon Winner", image: "@/assets/achievements/national-hackathon.jpg" },
     ],
     specialization: "Operations & Innovation",
-    email: "mallesh@cuephoria.in",
+    email: "support@cuephoriatech.in",
     linkedin: "#",
     isLeadership: true,
   },
@@ -200,7 +200,7 @@ const Team = () => {
 
             <div className="flex gap-3 pt-2">
               <a
-                href={`mailto:${member.email ?? "contact@cuephoria.in"}`}
+                href={`mailto:${member.email ?? "sales@cuephoriatech.in"}`}
                 className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 hover:from-primary/40 hover:to-secondary/40 border border-primary/30 flex items-center justify-center transition-all duration-300 hover:scale-110 group/icon"
               >
                 <Mail className="w-5 h-5 text-primary group-hover/icon:text-foreground transition-colors" />

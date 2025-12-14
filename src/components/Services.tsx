@@ -63,7 +63,7 @@ const Services = () => {
   const handleEmail = () => {
     const subject = encodeURIComponent(`Service Inquiry: ${selected ?? "Cuephoria Service"}`);
     const body = encodeURIComponent(buildMessage());
-    window.location.href = `mailto:contact@cuephoria.in?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:sales@cuephoriatech.in?subject=${subject}&body=${body}`;
   };
 
   return (

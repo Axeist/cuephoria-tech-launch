@@ -7,8 +7,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "Contact@cuephoria.in",
-    link: "mailto:Contact@cuephoria.in",
+    value: "sales@cuephoriatech.in",
+    link: "mailto:sales@cuephoriatech.in",
   },
   {
     icon: Phone,
