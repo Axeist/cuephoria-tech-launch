@@ -30,7 +30,7 @@ const clients: Client[] = [
     subscriptionDuration: "6 months",
     purchaseDate: "November 2025",
     rating: 5,
-    testimonial: "Cuephoria's POS system has transformed our gaming lounge operations. The real-time analytics and booking management features have significantly improved our customer experience and streamlined our day-to-day operations. Highly recommended for any entertainment venue looking to modernize their business!",
+    testimonial: "Cuetronix has transformed our gaming lounge operations. The real-time analytics and booking management features have significantly improved our customer experience and streamlined our day-to-day operations. Highly recommended for any entertainment venue looking to modernize their business!",
   },
   {
     id: "bright-buttons",
@@ -66,7 +66,7 @@ const Clients = () => {
             Trusted by <span className="text-gradient">Leading Businesses</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Join the growing community of businesses powered by Cuephoria's innovative solutions
+            Join the growing community of venues powered by Cuetronix and Cuephoria Tech
           </p>
         </div>
 

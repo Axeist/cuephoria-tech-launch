@@ -24,7 +24,13 @@ const contactInfo = [
   },
   {
     icon: MapPin,
-    label: "Website",
+    label: "Cuetronix",
+    value: "cuetronix.com",
+    link: "https://www.cuetronix.com",
+  },
+  {
+    icon: MapPin,
+    label: "Cuephoria Gaming Lounge",
     value: "cuephoria.in",
     link: "https://cuephoria.in",
   },

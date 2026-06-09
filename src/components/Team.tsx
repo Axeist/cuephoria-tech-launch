@@ -28,7 +28,7 @@ const leadership: TeamMember[] = [
     image: founderImage,
     phone: "+91 8667637565",
     bio: "With over 6 years of distinguished corporate experience, Ranjith has mastered the art of transforming business challenges into technological solutions. His career journey began in sales, where he developed a deep understanding of customer needs and market dynamics. This foundation propelled him into operations management, where he orchestrated seamless processes across multiple business verticals.",
-    expertise: "As a technology visionary, Ranjith specializes in application development and system architecture, with a particular focus on gaming and entertainment management software. His hands-on approach to product development ensures that every solution addresses real-world operational challenges. Under his leadership, Cuephoria Tech has developed cutting-edge POS systems and management platforms that revolutionize how gaming lounges and entertainment venues operate.",
+    expertise: "As a technology visionary, Ranjith specializes in application development and system architecture, with a particular focus on gaming and entertainment management software. His hands-on approach to product development ensures that every solution addresses real-world operational challenges. Under his leadership, Cuephoria Tech built Cuetronix — the all-in-one gaming billing OS that revolutionizes how gaming lounges and entertainment venues operate.",
     achievements: "Pioneer in gaming lounge technology solutions, expert in React & modern web technologies, proven track record in business operations optimization.",
     specialization: "Tech & Application Development",
     email: "ranjithkumar@cuephoriatech.in",

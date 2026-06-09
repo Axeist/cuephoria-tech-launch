@@ -162,7 +162,7 @@ Choosing the right POS system for your gaming lounge is a critical decision that
 
 Remember, the best POS system is one that grows with your business. Start with essential features and scale as your lounge expands. With the right system in place, you'll have the tools needed to compete effectively in the gaming entertainment industry.
 
-Ready to transform your gaming lounge operations? Contact Cuephoria Tech to learn how our specialized POS system can help your business thrive.
+Ready to transform your gaming lounge operations? Try Cuetronix — the all-in-one gaming billing software by Cuephoria Tech at cuetronix.com.
     `,
     author: "Ranjith Kumar S",
     authorRole: "Founder & CEO",
@@ -353,7 +353,7 @@ Modern software solutions have become essential for snooker clubs to compete eff
 
 The transformation from manual processes to digital management isn't just about technology—it's about building a sustainable, profitable business that can thrive in the modern entertainment industry.
 
-Ready to modernize your snooker club? Discover how Cuephoria Tech's specialized management software can help you achieve operational excellence.
+Ready to modernize your snooker club? Discover how Cuetronix by Cuephoria Tech can help you achieve operational excellence.
     `,
     author: "Krishna M Bajaj",
     authorRole: "Co-Founder & CMO",
@@ -572,7 +572,7 @@ PhonePe integration is no longer optional for modern gaming venues. It's a criti
 
 By embracing digital payments, you're not just keeping up with trends—you're positioning your business for sustainable growth in the digital economy.
 
-Ready to integrate PhonePe into your POS system? Contact Cuephoria Tech to learn how our solutions can streamline your payment processing.
+Ready to accept online payments? Cuetronix by Cuephoria Tech offers native Razorpay integration with UPI, cards, and wallets at cuetronix.com.
     `,
     author: "Ranjith Kumar S",
     authorRole: "Founder & CEO",
@@ -832,7 +832,7 @@ Effective inventory management transforms gaming venue operations from reactive 
 
 The investment in proper inventory management pays for itself through reduced losses, improved efficiency, and better customer experience. Start with the basics, measure your performance, and continuously refine your processes.
 
-Ready to optimize your inventory management? Contact Cuephoria Tech to learn how our POS system can help you master inventory control.
+Ready to optimize your inventory management? Cuetronix by Cuephoria Tech helps you master inventory control across gaming and entertainment venues.
     `,
     author: "Krishna M Bajaj",
     authorRole: "Co-Founder & CMO",
@@ -1169,7 +1169,7 @@ Building customer loyalty requires a strategic, multi-faceted approach. By combi
 
 Remember, loyalty is earned through consistent value delivery. Focus on understanding your customers, meeting their needs, and exceeding expectations. The investment in loyalty programs pays dividends through increased revenue, reduced acquisition costs, and sustainable business growth.
 
-Ready to build a loyal customer base? Contact Cuephoria Tech to learn how our POS system can help you implement effective loyalty strategies.
+Ready to build a loyal customer base? Cuetronix by Cuephoria Tech helps you implement effective loyalty strategies for your venue.
     `,
     author: "Ranjith Kumar S",
     authorRole: "Founder & CEO",

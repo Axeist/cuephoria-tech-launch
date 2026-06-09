@@ -2,6 +2,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/cuephoria-logo.png";
+import cuetronixLogo from "@/assets/cuetronix-logo.png";
 
 // Lazy load Spline for better performance
 const Spline = lazy(() => import('@splinetool/react-spline'));
@@ -152,21 +153,25 @@ const Hero = () => {
       {/* Content */}
       <div className="container mx-auto px-4 z-10 pt-20 relative">
         <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in-up">
-          <div className="mx-auto w-28 h-28 rounded-2xl overflow-hidden border border-primary/40 shadow-[0_0_40px_rgba(140,60,255,0.6)]">
-            <img src={logo} alt="Cuephoria" className="w-full h-full object-cover" />
+          <div className="flex items-center justify-center gap-4">
+            <div className="w-20 h-20 rounded-2xl overflow-hidden border border-primary/40 shadow-[0_0_40px_rgba(124,58,237,0.5)]">
+              <img src={logo} alt="Cuephoria Tech" className="w-full h-full object-cover" />
+            </div>
+            <div className="w-28 h-28 rounded-2xl overflow-hidden border border-primary/40 shadow-[0_0_40px_rgba(124,58,237,0.6)]">
+              <img src={cuetronixLogo} alt="Cuetronix" className="w-full h-full object-cover" />
+            </div>
           </div>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/50 bg-primary/10 backdrop-blur-sm animate-scale-in">
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm text-foreground">Next-Generation Technology Solutions</span>
+            <span className="text-sm text-foreground">First Application by Cuephoria Tech</span>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-            Best POS System for{" "}
-            <span className="text-gradient">Gaming Lounge & Snooker Club</span>
+            <span className="text-gradient">Cuetronix</span> — All-in-One Gaming Billing Software
           </h1>
 
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Advanced point-of-sale software designed specifically for gaming lounges, snooker clubs, billiards centers, and cafes. Streamline operations with booking management, inventory tracking, real-time analytics, and PhonePe integration.
+            The world's first all-in-one gaming and sports venue operating system — POS, branded online booking with Razorpay UPI and card payments, and corporate-grade staff payroll and attendance for snooker halls, gaming lounges, turfs, and entertainment venues.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
@@ -187,11 +192,20 @@ const Hero = () => {
               <span className="flex items-center gap-2">Explore Services <ArrowRight className="w-4 h-4" /></span>
             </Button>
             <a
-              href="/pos"
-              className="relative inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/50 text-foreground hover:text-primary-foreground transition-all duration-300 hover:shadow-[0_0_28px_rgba(140,60,255,0.45)]"
+              href="https://www.cuetronix.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/50 text-foreground hover:text-primary-foreground transition-all duration-300 hover:shadow-[0_0_28px_rgba(124,58,237,0.45)]"
             >
               <span className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/15 via-secondary/15 to-primary/15 opacity-0 group-hover:opacity-100 transition-opacity" />
-              <span className="relative">Learn more about POS</span>
+              <span className="relative">Try Cuetronix Free</span>
+              <ArrowRight className="w-4 h-4 relative" />
+            </a>
+            <a
+              href="/pos"
+              className="relative inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/50 text-foreground hover:text-primary-foreground transition-all duration-300 hover:shadow-[0_0_28px_rgba(124,58,237,0.45)]"
+            >
+              <span className="relative">View Features</span>
               <ArrowRight className="w-4 h-4 relative" />
             </a>
           </div>

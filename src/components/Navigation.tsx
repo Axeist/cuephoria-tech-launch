@@ -67,7 +67,8 @@ const Navigation = () => {
             <button onClick={() => goToHomeHash("services")} className="text-foreground hover:text-primary transition-colors">
               Services
             </button>
-            <a href="/pos" className="text-foreground hover:text-primary transition-colors">POS System</a>
+            <a href="/pos" className="text-foreground hover:text-primary transition-colors">Cuetronix</a>
+            <a href="https://www.cuetronix.com" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors">cuetronix.com</a>
             <a href="/blog" className="text-foreground hover:text-primary transition-colors">Blog</a>
             <button onClick={() => goToHomeHash("team")} className="text-foreground hover:text-primary transition-colors">
               Team
@@ -99,7 +100,10 @@ const Navigation = () => {
               Services
             </button>
             <a href="/pos" className="block w-full text-left text-foreground hover:text-primary transition-colors">
-              POS System
+              Cuetronix
+            </a>
+            <a href="https://www.cuetronix.com" target="_blank" rel="noopener noreferrer" className="block w-full text-left text-foreground hover:text-primary transition-colors">
+              cuetronix.com
             </a>
             <a href="/blog" className="block w-full text-left text-foreground hover:text-primary transition-colors">
               Blog

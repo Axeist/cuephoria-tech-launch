@@ -2,10 +2,10 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
-// Ensure favicon and title are set to Cuephoria branding
+// Ensure favicon and title are set to Cuephoria Tech branding
 try {
-  document.title = "POS System for Gaming Lounge & Snooker Club | Cuephoria Tech™ - Technology Simplified";
-  const iconHref = new URL("./assets/cuephoria-logo.png", import.meta.url).toString();
+  document.title = "Cuephoria Tech™ — Technology Simplified | Makers of Cuetronix";
+  const iconHref = new URL("./assets/cuetronix-favicon.png", import.meta.url).toString();
   let link = document.querySelector<HTMLLinkElement>('link[rel="icon"]');
   if (!link) {
     link = document.createElement("link");

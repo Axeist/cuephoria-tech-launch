@@ -75,13 +75,13 @@ const POSFeatures = () => {
           <div className="space-y-8 animate-fade-in">
             <div className="space-y-4">
               <div className="inline-block px-4 py-2 rounded-full border border-primary/50 bg-primary/10 backdrop-blur-sm">
-                <span className="text-sm text-primary font-semibold">Featured Product</span>
+                <span className="text-sm text-primary font-semibold">Flagship Product</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold">
-                Cuephoria's <span className="text-gradient">Cutting-Edge POS</span>
+                <span className="text-gradient">Cuetronix</span> — Gaming Billing OS
               </h2>
               <p className="text-xl text-muted-foreground">
-                The ultimate point-of-sale solution designed specifically for gaming lounges, cafes, and entertainment venues.
+                The first application from Cuephoria Tech. All-in-one POS, online booking with Razorpay, and corporate-grade staff management for gaming lounges, snooker halls, turfs, and entertainment venues.
               </p>
             </div>
 
@@ -116,10 +116,12 @@ const POSFeatures = () => {
                 <Zap className="w-4 h-4" />
               </a>
               <a
-                href="/pos"
+                href="https://www.cuetronix.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-primary/50 hover:bg-primary/10 text-foreground font-semibold transition-all duration-300"
               >
-                Learn more about POS
+                Visit cuetronix.com
               </a>
             </div>
           </div>
@@ -129,7 +131,7 @@ const POSFeatures = () => {
             <div className="relative rounded-2xl overflow-hidden border border-primary/30 shadow-2xl hover:shadow-[0_0_40px_rgba(140,60,255,0.4)] transition-all duration-500">
               <img
                 src={posImage}
-                alt="Cuephoria POS system for gaming lounge and snooker club with booking management and inventory tracking"
+                alt="Cuetronix all-in-one gaming billing software with booking management and inventory tracking"
                 className="w-full h-auto"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />

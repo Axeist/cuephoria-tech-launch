@@ -19,7 +19,7 @@ const Footer = () => {
               <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Cuephoria Tech</span>
             </a>
             <p className="text-muted-foreground text-sm">
-              Empowering businesses with cutting-edge technology solutions and exceptional service.
+              Technology studio behind Cuetronix — the billing and operations software for gaming lounges, snooker halls, and entertainment venues.
             </p>
           </div>
 
@@ -27,7 +27,8 @@ const Footer = () => {
           <div>
             <h4 className="font-bold text-foreground mb-4">Services</h4>
             <ul className="space-y-2 text-muted-foreground text-sm">
-              <li><a href="/pos" className="hover:text-primary transition-colors">POS System</a></li>
+              <li><a href="/pos" className="hover:text-primary transition-colors">Cuetronix</a></li>
+              <li><a href="https://www.cuetronix.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">cuetronix.com</a></li>
               <li><a href="#services" className="hover:text-primary transition-colors">Web Development</a></li>
               <li><a href="#services" className="hover:text-primary transition-colors">Cloud Solutions</a></li>
               <li><a href="#services" className="hover:text-primary transition-colors">Gaming Management</a></li>
@@ -53,7 +54,8 @@ const Footer = () => {
               <li><a href="#team" className="hover:text-primary transition-colors">Our Team</a></li>
               <li><a href="#clients" className="hover:text-primary transition-colors">Our Clients</a></li>
               <li><a href="#contact" className="hover:text-primary transition-colors">Contact</a></li>
-              <li><a href="https://cuephoria.in" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Cuephoria.in</a></li>
+              <li><a href="https://cuephoria.in" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Cuephoria Gaming Lounge</a></li>
+              <li><a href="https://www.cuetronix.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Cuetronix</a></li>
             </ul>
           </div>
 
@@ -89,7 +91,7 @@ const Footer = () => {
                     <DialogHeader>
                       <DialogTitle>Terms & Conditions</DialogTitle>
                       <DialogDescription>
-                        By using Cuephoria products and services, you agree to fair-use, lawful usage, and payment terms. Data entered remains yours; we process it to provide the service. Refunds are handled case-by-case for subscriptions; one-time licenses are non-refundable after delivery. Contact us for any clarifications.
+                        By using Cuephoria Tech products and services, including Cuetronix, you agree to fair-use, lawful usage, and payment terms. Data entered remains yours; we process it to provide the service. Refunds are handled case-by-case for subscriptions; one-time licenses are non-refundable after delivery. Contact us for any clarifications.
                       </DialogDescription>
                     </DialogHeader>
                   </DialogContent>

@@ -9,8 +9,8 @@ import { Textarea } from "@/components/ui/textarea";
 const services = [
   {
     icon: ShoppingCart,
-    title: "Cuephoria POS System",
-    description: "Industry-leading point-of-sale solution designed specifically for gaming lounges and cafes with advanced inventory, billing, and analytics.",
+    title: "Cuetronix",
+    description: "Our flagship all-in-one gaming billing OS — POS, online booking with Razorpay payments, staff payroll, and attendance for snooker halls, gaming lounges, turfs, and entertainment venues.",
     gradient: "from-primary to-blue-400",
   },
   {
@@ -61,7 +61,7 @@ const Services = () => {
   };
 
   const handleEmail = () => {
-    const subject = encodeURIComponent(`Service Inquiry: ${selected ?? "Cuephoria Service"}`);
+    const subject = encodeURIComponent(`Service Inquiry: ${selected ?? "Cuephoria Tech Service"}`);
     const body = encodeURIComponent(buildMessage());
     window.location.href = `mailto:sales@cuephoriatech.in?subject=${subject}&body=${body}`;
   };

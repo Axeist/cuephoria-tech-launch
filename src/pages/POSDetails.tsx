@@ -34,7 +34,7 @@ const features = [
     image: posSales,
     details: [
       "Fast carting with item quantities and notes",
-      "Multiple payment methods including PhonePe UPI integration",
+      "Multiple payment methods including Razorpay UPI and card integration",
       "Split payments support (cash + UPI combinations)",
       "Saved carts for quick retrieval",
       "On-screen receipt preview and print templates",
@@ -144,8 +144,8 @@ const features = [
 const additionalFeatures = [
   {
     icon: CreditCard,
-    title: "PhonePe Integration",
-    description: "Seamless UPI payments with webhook support, status tracking, and automatic reconciliation.",
+    title: "Razorpay Integration",
+    description: "Native Razorpay payments with UPI, cards, net-banking, and wallets. Webhook-verified bookings with automatic reconciliation.",
   },
   {
     icon: MessageSquare,
@@ -342,7 +342,7 @@ const pricingPlans = [
     features: [
       'All Features Unlocked',
       'Lifetime Access',
-      'Lifetime Support from Cuephoria',
+      'Lifetime Support from Cuephoria Tech',
       '5 Years of Updates',
       'Priority Support',
       'Enterprise Features',
@@ -361,14 +361,14 @@ const POSDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = "POS Software for Gaming Lounge & Snooker Club | Complete Features | Cuephoria Tech";
+    document.title = "Cuetronix — All-in-One Gaming Billing Software | Complete Features | Cuephoria Tech";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Complete POS software solution for gaming lounges and snooker clubs. Features booking management, inventory tracking, real-time analytics, PhonePe integration, staff management, and comprehensive reporting. Trusted by gaming venues across India.');
+      metaDescription.setAttribute('content', 'Cuetronix is the all-in-one gaming billing OS by Cuephoria Tech. POS, online booking with Razorpay, staff payroll and attendance for snooker halls, gaming lounges, turfs, and entertainment venues. 14-day free trial.');
     }
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
-      canonical.setAttribute('href', 'https://cuephoria.in/pos');
+      canonical.setAttribute('href', 'https://cuephoriatech.in/pos');
     }
   }, []);
 
@@ -419,19 +419,20 @@ const POSDetails = () => {
               <span className="text-sm text-primary font-semibold">COMPREHENSIVE SOLUTION</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-bold">
-              Best POS Software for <span className="text-gradient">Gaming Lounge & Snooker Club</span>
+              <span className="text-gradient">Cuetronix</span> — All-in-One Gaming Billing Software
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground">
-              Complete point-of-sale and management system for gaming lounges, snooker clubs, billiards centers, and cafes. Features booking management, inventory tracking, real-time analytics, PhonePe integration, and comprehensive reporting.
+              The first application from Cuephoria Tech. POS, branded online booking with Razorpay UPI and card payments, and corporate-grade staff payroll and attendance for snooker halls, gaming lounges, turfs, and entertainment venues.
             </p>
             <div className="flex flex-wrap gap-4 justify-center pt-4">
               <a
-                href="#"
-                onClick={handleDemoClick}
+                href="https://www.cuetronix.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-primary-foreground font-semibold transition-all duration-300 shadow-lg hover:shadow-primary/50"
               >
                 <Zap className="w-5 h-5" />
-                View Live Demo
+                Start 14-Day Free Trial
               </a>
               <a
                 href="#features"
@@ -520,7 +521,7 @@ const POSDetails = () => {
               Even More <span className="text-gradient">Powerful Features</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Additional capabilities that make Cuephoria POS the most comprehensive solution for entertainment venues.
+              Additional capabilities that make Cuetronix the most comprehensive solution for entertainment venues.
             </p>
           </div>
 
@@ -754,7 +755,7 @@ const POSDetails = () => {
             <div className="grid md:grid-cols-2 gap-4 text-sm text-muted-foreground">
                 <div>▣ GST invoices provided for all plans</div>
                 <div>▣ Optional hardware integration available</div>
-                <div>▣ PhonePe UPI supported on all plans</div>
+                <div>▣ Razorpay UPI and card payments on all plans</div>
                 <div>▣ Offline-first sync capabilities</div>
                 <div>▣ India data residency option available</div>
               <div>▣ Regular feature updates</div>
@@ -791,8 +792,8 @@ const POSDetails = () => {
               <p className="text-muted-foreground">Beautiful, responsive design</p>
             </div>
             <div className="text-center space-y-2 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-              <div className="text-4xl font-bold text-gradient">PhonePe API</div>
-              <p className="text-muted-foreground">Secure payment processing</p>
+              <div className="text-4xl font-bold text-gradient">Razorpay</div>
+              <p className="text-muted-foreground">Native UPI, card, and wallet payments</p>
             </div>
             <div className="text-center space-y-2 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
               <div className="text-4xl font-bold text-gradient">Gemini AI</div>
@@ -817,7 +818,7 @@ const POSDetails = () => {
               Ready to Transform Your <span className="text-gradient">Business?</span>
             </h2>
             <p className="text-xl text-muted-foreground">
-              Join the venues already using Cuephoria POS to streamline operations and boost revenue.
+              Join the venues already using Cuetronix to streamline operations and boost revenue.
             </p>
             <div className="flex flex-wrap gap-4 justify-center pt-4">
               <a
