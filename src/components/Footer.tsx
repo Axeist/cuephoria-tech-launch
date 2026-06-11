@@ -1,5 +1,5 @@
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Scale, Shield } from "lucide-react";
-import CuephoriaTechLogo from "@/components/brand/CuephoriaTechLogo";
+import CuetronixLogo from "@/components/brand/CuetronixLogo";
 import TrialCTA from "@/components/TrialCTA";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { CUETRONIX_URL, TRIAL_SUBTEXT } from "@/lib/cuetronix";
@@ -23,7 +23,8 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
           <div className="space-y-4 lg:col-span-2">
             <a href="/" className="inline-block">
-              <CuephoriaTechLogo size="md" showTagline />
+              <CuetronixLogo variant="stacked" className="max-w-[180px]" />
+              <p className="text-xs text-muted-foreground mt-2">by Cuephoria Tech</p>
             </a>
             <p className="text-muted-foreground text-sm max-w-sm">
               Cuephoria Tech builds venue software. Cuetronix is our flagship all-in-one OS for gaming

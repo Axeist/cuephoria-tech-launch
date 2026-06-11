@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import CuephoriaTechLogo from "@/components/brand/CuephoriaTechLogo";
+import CuetronixLogo from "@/components/brand/CuetronixLogo";
 import TrialCTA from "@/components/TrialCTA";
-import cuetronixIcon from "@/assets/brand/cuetronix-icon.png";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,8 +29,7 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
   };
 
-  const navLinkClass =
-    "text-foreground hover:text-primary transition-colors";
+  const navLinkClass = "text-foreground hover:text-primary transition-colors";
 
   return (
     <nav
@@ -39,16 +37,13 @@ const Navigation = () => {
         isScrolled ? "bg-background/95 backdrop-blur-lg shadow-lg" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <a href="/" className="flex items-center gap-3 group">
-            <img
-              src={cuetronixIcon}
-              alt=""
-              className="w-9 h-9 rounded-lg ring-1 ring-primary/40"
-              aria-hidden
+      <div className="container mx-auto px-4 py-3">
+        <div className="flex items-center justify-between gap-4">
+          <a href="/" className="flex-shrink-0 group">
+            <CuetronixLogo
+              variant="stacked"
+              className="h-14 sm:h-16 w-auto group-hover:opacity-90 transition-opacity"
             />
-            <CuephoriaTechLogo size="sm" />
           </a>
 
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
@@ -75,7 +70,7 @@ const Navigation = () => {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-foreground"
+            className="md:hidden text-foreground flex-shrink-0"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

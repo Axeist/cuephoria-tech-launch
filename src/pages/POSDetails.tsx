@@ -4,7 +4,8 @@ import Footer from "@/components/Footer";
 import NoMandateBanner from "@/components/NoMandateBanner";
 import TrialCTA from "@/components/TrialCTA";
 import TrialBadge from "@/components/TrialBadge";
-import cuetronixLogo from "@/assets/brand/cuetronix-logo-full.png";
+import CuetronixLogo from "@/components/brand/CuetronixLogo";
+import { cuetronixLogoStacked } from "@/assets/brand";
 import { CUETRONIX_URL } from "@/lib/cuetronix";
 import {
   ShoppingCart, Users, TrendingUp, Package,
@@ -19,7 +20,7 @@ const features = [
     icon: ShoppingCart,
     title: "Core Sales & Checkout",
     description: "Lightning-fast Point of Sale with cart management, discounts, split payments, and saved carts. Complete with digital receipts and promotional popup system.",
-    image: cuetronixLogo,
+    image: cuetronixLogoStacked,
     details: [
       "Fast carting with item quantities and notes",
       "Multiple payment methods including PhonePe UPI integration",
@@ -33,7 +34,7 @@ const features = [
     icon: BarChart3,
     title: "Real-time Dashboard & Analytics",
     description: "Comprehensive business intelligence with live sales tracking, inventory alerts, and customer analytics. Make data-driven decisions with intuitive visualizations.",
-    image: cuetronixLogo,
+    image: cuetronixLogoStacked,
     details: [
       "Real-time sales overview and KPI tracking",
       "Active sessions monitoring across all stations",
@@ -47,7 +48,7 @@ const features = [
     icon: Package,
     title: "Advanced Inventory Management",
     description: "Never run out of stock again. Comprehensive product management with categories, pricing, tax configuration, and automated alerts.",
-    image: cuetronixLogo,
+    image: cuetronixLogoStacked,
     details: [
       "Multi-category product organization",
       "Advanced search and filtering capabilities",
@@ -61,7 +62,7 @@ const features = [
     icon: Zap,
     title: "Gaming Station Management",
     description: "Specialized module for managing gaming stations, billiards tables, and VR setups. Track sessions, availability, and automate billing.",
-    image: cuetronixLogo,
+    image: cuetronixLogoStacked,
     details: [
       "Multi-type station support (PS5, 8-Ball, VR)",
       "Real-time availability tracking",
@@ -75,7 +76,7 @@ const features = [
     icon: Users,
     title: "Customer Relationship Management",
     description: "Build lasting relationships with comprehensive customer profiles, purchase history, loyalty programs, and WhatsApp integration.",
-    image: cuetronixLogo,
+    image: cuetronixLogoStacked,
     details: [
       "Detailed customer profiles with contact info",
       "Purchase history and spending analytics",
@@ -89,7 +90,7 @@ const features = [
     icon: FileText,
     title: "Comprehensive Reporting",
     description: "Generate detailed reports for sales, products, customers, and expenses. Export data for accounting and analysis.",
-    image: cuetronixLogo,
+    image: cuetronixLogoStacked,
     details: [
       "Sales reports by payment method",
       "Product performance analytics",
@@ -103,7 +104,7 @@ const features = [
     icon: Calendar,
     title: "Booking Management",
     description: "Advanced booking system with calendar view, coupon management, and marketing campaign insights. Perfect for events and tournaments.",
-    image: cuetronixLogo,
+    image: cuetronixLogoStacked,
     details: [
       "Calendar and list view bookings",
       "Advanced filtering by date, station, customer",
@@ -117,7 +118,7 @@ const features = [
     icon: UserCog,
     title: "Staff & Payroll Management",
     description: "Manage your team with attendance tracking, shift management, role-based access, and automated payroll calculations.",
-    image: cuetronixLogo,
+    image: cuetronixLogoStacked,
     details: [
       "Staff directory with role assignment",
       "Clock-in/out attendance system",
@@ -379,7 +380,7 @@ const POSDetails = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-4xl mx-auto space-y-6 animate-fade-in">
             <TrialBadge className="mx-auto" />
-            <img src={cuetronixLogo} alt="Cuetronix by Cuephoria Tech" className="mx-auto max-w-xs w-full h-auto" />
+            <CuetronixLogo variant="stacked" className="mx-auto max-w-[280px] w-full mb-2" />
             <p className="text-sm text-muted-foreground uppercase tracking-widest">By Cuephoria Tech</p>
             <h1 className="text-4xl md:text-6xl font-bold">
               All-in-One Venue OS for{" "}
@@ -803,7 +804,7 @@ const POSDetails = () => {
             </p>
           </div>
           <div className="max-w-lg mx-auto text-center p-8 rounded-2xl border border-primary/30 card-gradient">
-            <img src={cuetronixLogo} alt="Cuetronix" className="w-full h-auto mb-6" />
+            <CuetronixLogo variant="stacked" className="w-full max-w-[240px] mx-auto mb-6" />
             <TrialCTA className="w-full" label="Start Free Trial on Cuetronix" />
           </div>
         </div>

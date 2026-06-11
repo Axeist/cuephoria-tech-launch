@@ -1,3 +1,5 @@
+import { cuetronixLogoStacked } from "@/assets/brand";
+
 export interface BlogComment {
   id: string;
   author: string;
@@ -168,7 +170,7 @@ Ready to transform your gaming lounge operations? Try Cuetronix — the all-in-o
     authorRole: "Founder & CEO",
     date: "2024-01-15",
     category: "Business Management",
-    image: "/src/assets/pos-dashboard.png",
+    image: cuetronixLogoStacked,
     tags: ["POS System", "Gaming Lounge", "Business Management", "Technology"],
     readTime: 8,
     views: 1247,
@@ -359,7 +361,7 @@ Ready to modernize your snooker club? Discover how Cuetronix by Cuephoria Tech c
     authorRole: "Co-Founder & CMO",
     date: "2024-01-10",
     category: "Business Management",
-    image: "/src/assets/pos-stations.png",
+    image: cuetronixLogoStacked,
     tags: ["Snooker Club", "Management Software", "Business Automation", "Technology"],
     readTime: 7,
     views: 1893,
@@ -578,7 +580,7 @@ Ready to accept online payments? Cuetronix by Cuephoria Tech offers native Razor
     authorRole: "Founder & CEO",
     date: "2024-01-05",
     category: "Technology",
-    image: "/src/assets/pos-sales.png",
+    image: cuetronixLogoStacked,
     tags: ["PhonePe", "UPI", "Payment Integration", "POS System"],
     readTime: 6,
     views: 2156,
@@ -838,7 +840,7 @@ Ready to optimize your inventory management? Cuetronix by Cuephoria Tech helps y
     authorRole: "Co-Founder & CMO",
     date: "2023-12-28",
     category: "Operations",
-    image: "/src/assets/pos-products.png",
+    image: cuetronixLogoStacked,
     tags: ["Inventory Management", "Operations", "Business Efficiency", "Gaming Venue"],
     readTime: 9,
     views: 1674,
@@ -1175,7 +1177,7 @@ Ready to build a loyal customer base? Cuetronix by Cuephoria Tech helps you impl
     authorRole: "Founder & CEO",
     date: "2023-12-20",
     category: "Marketing",
-    image: "/src/assets/pos-customers.png",
+    image: cuetronixLogoStacked,
     tags: ["Customer Retention", "Loyalty Programs", "Marketing", "Business Growth"],
     readTime: 10,
     views: 2431,

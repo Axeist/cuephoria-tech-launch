@@ -1,8 +1,8 @@
 import { CheckCircle, TrendingUp, Users, Zap, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import CuetronixLogo from "@/components/brand/CuetronixLogo";
 import TrialCTA from "@/components/TrialCTA";
 import TrialBadge from "@/components/TrialBadge";
-import cuetronixLogo from "@/assets/brand/cuetronix-logo-full.png";
 import { CUETRONIX_URL } from "@/lib/cuetronix";
 
 const features = [
@@ -52,11 +52,7 @@ const CuetronixShowcase = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in">
             <div className="rounded-2xl border border-primary/30 bg-card/50 p-6 md:p-8 card-gradient">
-              <img
-                src={cuetronixLogo}
-                alt="Cuetronix logo — by Cuephoria Tech"
-                className="w-full max-w-sm mx-auto h-auto mb-4"
-              />
+              <CuetronixLogo variant="stacked" className="w-full max-w-[240px] mx-auto mb-4" />
               <p className="text-center text-sm text-muted-foreground">By Cuephoria Tech</p>
             </div>
 
