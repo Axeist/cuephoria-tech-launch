@@ -1,40 +1,28 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { 
-  ShoppingCart, Users, TrendingUp, Package, 
+import NoMandateBanner from "@/components/NoMandateBanner";
+import TrialCTA from "@/components/TrialCTA";
+import TrialBadge from "@/components/TrialBadge";
+import cuetronixLogo from "@/assets/brand/cuetronix-logo-full.png";
+import { CUETRONIX_URL } from "@/lib/cuetronix";
+import {
+  ShoppingCart, Users, TrendingUp, Package,
   CreditCard, Calendar, UserCog, FileText,
   Zap, Shield, Cloud, BarChart3, MessageSquare,
-  Clock, Database, Smartphone, Phone
+  Clock, Database, Smartphone, ExternalLink
 } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import posDashboard from "@/assets/pos-dashboard.png";
-import posSales from "@/assets/pos-sales.png";
-import posStations from "@/assets/pos-stations.png";
-import posProducts from "@/assets/pos-products.png";
-import posCustomers from "@/assets/pos-customers.png";
-import posReports from "@/assets/pos-reports.png";
-import posBookings from "@/assets/pos-bookings.png";
-import posStaff from "@/assets/pos-staff.png";
 
 const features = [
   {
     icon: ShoppingCart,
     title: "Core Sales & Checkout",
     description: "Lightning-fast Point of Sale with cart management, discounts, split payments, and saved carts. Complete with digital receipts and promotional popup system.",
-    image: posSales,
+    image: cuetronixLogo,
     details: [
       "Fast carting with item quantities and notes",
-      "Multiple payment methods including Razorpay UPI and card integration",
+      "Multiple payment methods including PhonePe UPI integration",
       "Split payments support (cash + UPI combinations)",
       "Saved carts for quick retrieval",
       "On-screen receipt preview and print templates",
@@ -45,7 +33,7 @@ const features = [
     icon: BarChart3,
     title: "Real-time Dashboard & Analytics",
     description: "Comprehensive business intelligence with live sales tracking, inventory alerts, and customer analytics. Make data-driven decisions with intuitive visualizations.",
-    image: posDashboard,
+    image: cuetronixLogo,
     details: [
       "Real-time sales overview and KPI tracking",
       "Active sessions monitoring across all stations",
@@ -59,7 +47,7 @@ const features = [
     icon: Package,
     title: "Advanced Inventory Management",
     description: "Never run out of stock again. Comprehensive product management with categories, pricing, tax configuration, and automated alerts.",
-    image: posProducts,
+    image: cuetronixLogo,
     details: [
       "Multi-category product organization",
       "Advanced search and filtering capabilities",
@@ -73,7 +61,7 @@ const features = [
     icon: Zap,
     title: "Gaming Station Management",
     description: "Specialized module for managing gaming stations, billiards tables, and VR setups. Track sessions, availability, and automate billing.",
-    image: posStations,
+    image: cuetronixLogo,
     details: [
       "Multi-type station support (PS5, 8-Ball, VR)",
       "Real-time availability tracking",
@@ -87,7 +75,7 @@ const features = [
     icon: Users,
     title: "Customer Relationship Management",
     description: "Build lasting relationships with comprehensive customer profiles, purchase history, loyalty programs, and WhatsApp integration.",
-    image: posCustomers,
+    image: cuetronixLogo,
     details: [
       "Detailed customer profiles with contact info",
       "Purchase history and spending analytics",
@@ -101,7 +89,7 @@ const features = [
     icon: FileText,
     title: "Comprehensive Reporting",
     description: "Generate detailed reports for sales, products, customers, and expenses. Export data for accounting and analysis.",
-    image: posReports,
+    image: cuetronixLogo,
     details: [
       "Sales reports by payment method",
       "Product performance analytics",
@@ -115,7 +103,7 @@ const features = [
     icon: Calendar,
     title: "Booking Management",
     description: "Advanced booking system with calendar view, coupon management, and marketing campaign insights. Perfect for events and tournaments.",
-    image: posBookings,
+    image: cuetronixLogo,
     details: [
       "Calendar and list view bookings",
       "Advanced filtering by date, station, customer",
@@ -129,7 +117,7 @@ const features = [
     icon: UserCog,
     title: "Staff & Payroll Management",
     description: "Manage your team with attendance tracking, shift management, role-based access, and automated payroll calculations.",
-    image: posStaff,
+    image: cuetronixLogo,
     details: [
       "Staff directory with role assignment",
       "Clock-in/out attendance system",
@@ -144,8 +132,8 @@ const features = [
 const additionalFeatures = [
   {
     icon: CreditCard,
-    title: "Razorpay Integration",
-    description: "Native Razorpay payments with UPI, cards, net-banking, and wallets. Webhook-verified bookings with automatic reconciliation.",
+    title: "PhonePe Integration",
+    description: "Seamless UPI payments with webhook support, status tracking, and automatic reconciliation.",
   },
   {
     icon: MessageSquare,
@@ -357,14 +345,15 @@ const pricingPlans = [
 
 const POSDetails = () => {
   const [activeFilter, setActiveFilter] = useState<'monthly' | 'quarterly' | '6months' | 'annual' | 'lifetime' | 'all'>('all');
-  const [demoDialogOpen, setDemoDialogOpen] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = "Cuetronix — All-in-One Gaming Billing Software | Complete Features | Cuephoria Tech";
+    document.title = "Cuetronix — All-in-One Venue OS | By Cuephoria Tech";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Cuetronix is the all-in-one gaming billing OS by Cuephoria Tech. POS, online booking with Razorpay, staff payroll and attendance for snooker halls, gaming lounges, turfs, and entertainment venues. 14-day free trial.');
+      metaDescription.setAttribute(
+        'content',
+        'Cuetronix by Cuephoria Tech — all-in-one POS, booking, billing, and staff management for gaming lounges and snooker clubs. Start your 14-day free trial with no auto-pay mandate.'
+      );
     }
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
@@ -372,74 +361,45 @@ const POSDetails = () => {
     }
   }, []);
 
-  const filteredPlans = activeFilter === 'all' 
-    ? pricingPlans 
+  const filteredPlans = activeFilter === 'all'
+    ? pricingPlans
     : pricingPlans.filter(plan => plan.category === activeFilter);
-
-  const goToContact = () => {
-    // If we're already on the home page, just scroll
-    if (window.location.pathname === '/') {
-      setTimeout(() => {
-        const element = document.getElementById('contact');
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 50);
-    } else {
-      // Navigate to home page with hash
-      // Use window.location.href for full page reload to ensure hash is processed
-      window.location.href = '/#contact';
-    }
-  };
-
-  const handleDemoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    setDemoDialogOpen(true);
-  };
-
-  const handleDialogClose = () => {
-    setDemoDialogOpen(false);
-    // Navigate to contact page after dialog closes
-    goToContact();
-  };
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+      <NoMandateBanner />
+
       {/* Hero Section */}
-      <section className="pt-32 pb-16 relative overflow-hidden">
+      <section className="pt-24 pb-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-secondary/10 to-background" />
         <div className="absolute top-20 right-0 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-pulse-glow" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: "1s" }} />
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-4xl mx-auto space-y-6 animate-fade-in">
-            <div className="inline-block px-6 py-2 rounded-full border border-primary/50 bg-primary/10 backdrop-blur-sm mb-4">
-              <span className="text-sm text-primary font-semibold">COMPREHENSIVE SOLUTION</span>
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold">
-              <span className="text-gradient">Cuetronix</span> — All-in-One Gaming Billing Software
+            <TrialBadge className="mx-auto" />
+            <img src={cuetronixLogo} alt="Cuetronix by Cuephoria Tech" className="mx-auto max-w-xs w-full h-auto" />
+            <p className="text-sm text-muted-foreground uppercase tracking-widest">By Cuephoria Tech</p>
+            <h1 className="text-4xl md:text-6xl font-bold">
+              All-in-One Venue OS for{" "}
+              <span className="text-gradient">Gaming & Entertainment</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground">
-              The first application from Cuephoria Tech. POS, branded online booking with Razorpay UPI and card payments, and corporate-grade staff payroll and attendance for snooker halls, gaming lounges, turfs, and entertainment venues.
+              Cuetronix is Cuephoria Tech&apos;s flagship product — POS, online booking, billing, staff payroll,
+              inventory, and analytics in one platform. Start with a 14-day free trial. No auto-pay mandate.
             </p>
             <div className="flex flex-wrap gap-4 justify-center pt-4">
-              <a
-                href="https://www.cuetronix.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-primary-foreground font-semibold transition-all duration-300 shadow-lg hover:shadow-primary/50"
-              >
-                <Zap className="w-5 h-5" />
-                Start 14-Day Free Trial
-              </a>
-              <a
-                href="#features"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-lg border-2 border-primary/50 hover:bg-primary/10 text-foreground font-semibold transition-all duration-300"
-              >
-                Explore Features
-              </a>
+              <TrialCTA size="lg" />
+              <Button asChild size="lg" variant="outline" className="border-primary/50">
+                <a href={CUETRONIX_URL} target="_blank" rel="noopener noreferrer">
+                  Sign up on Cuetronix
+                  <ExternalLink className="ml-2 w-4 h-4" />
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="ghost">
+                <a href="#features">Explore Features</a>
+              </Button>
             </div>
           </div>
         </div>
@@ -562,8 +522,12 @@ const POSDetails = () => {
               Simple Pricing That <span className="text-gradient">Scales</span>
             </h2>
             <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-              Choose the pricing plan that fits your business needs. All plans include core POS, Gaming Stations, Products Management, Customer Management, and Reports & Analytics.
+              Start with 14 days free on Cuetronix — no auto-debit, no payment mandate. Choose a plan when you&apos;re ready.
+              Reference pricing below; sign up at cuetronix.com to begin your trial.
             </p>
+            <div className="mt-6">
+              <TrialCTA label="Start Free Trial on Cuetronix" />
+            </div>
           </div>
 
           {/* Pricing Tabs */}
@@ -713,30 +677,26 @@ const POSDetails = () => {
                           </p>
                         </div>
                         <a
-                          href="#"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            goToContact();
-                          }}
+                          href={CUETRONIX_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="block text-center px-6 py-4 rounded-xl bg-gradient-to-r from-primary to-secondary text-primary-foreground font-bold hover:opacity-90 transition-all shadow-lg"
                         >
-                          Contact Sales
+                          Start Free Trial on Cuetronix
                         </a>
                       </div>
                     ) : (
                       <a
-                        href="#"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          goToContact();
-                        }}
+                        href={CUETRONIX_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className={`block text-center px-6 py-4 rounded-xl font-semibold transition-all ${
                           plan.popular
                             ? 'bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 shadow-lg'
                             : 'border-2 border-primary/30 text-primary hover:bg-primary/10'
                         }`}
                       >
-                        Get Started
+                        Start 14-Day Free Trial
                       </a>
                     )}
                   </div>
@@ -755,7 +715,7 @@ const POSDetails = () => {
             <div className="grid md:grid-cols-2 gap-4 text-sm text-muted-foreground">
                 <div>▣ GST invoices provided for all plans</div>
                 <div>▣ Optional hardware integration available</div>
-                <div>▣ Razorpay UPI and card payments on all plans</div>
+                <div>▣ PhonePe UPI supported on all plans</div>
                 <div>▣ Offline-first sync capabilities</div>
                 <div>▣ India data residency option available</div>
               <div>▣ Regular feature updates</div>
@@ -792,8 +752,8 @@ const POSDetails = () => {
               <p className="text-muted-foreground">Beautiful, responsive design</p>
             </div>
             <div className="text-center space-y-2 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-              <div className="text-4xl font-bold text-gradient">Razorpay</div>
-              <p className="text-muted-foreground">Native UPI, card, and wallet payments</p>
+              <div className="text-4xl font-bold text-gradient">PhonePe API</div>
+              <p className="text-muted-foreground">Secure payment processing</p>
             </div>
             <div className="text-center space-y-2 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
               <div className="text-4xl font-bold text-gradient">Gemini AI</div>
@@ -819,26 +779,13 @@ const POSDetails = () => {
             </h2>
             <p className="text-xl text-muted-foreground">
               Join the venues already using Cuetronix to streamline operations and boost revenue.
+              Try free for 14 days — no auto-pay mandate.
             </p>
             <div className="flex flex-wrap gap-4 justify-center pt-4">
-              <a
-                href="#"
-                onClick={handleDemoClick}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-primary-foreground font-semibold transition-all duration-300 shadow-lg hover:shadow-primary/50"
-              >
-                <Zap className="w-5 h-5" />
-                Try Live Demo
-              </a>
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  goToContact();
-                }}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-lg border-2 border-primary/50 hover:bg-primary/10 text-foreground font-semibold transition-all duration-300"
-              >
-                Contact Sales
-              </a>
+              <TrialCTA size="lg" />
+              <Button asChild size="lg" variant="outline" className="border-primary/50">
+                <a href="/#contact">Contact Sales</a>
+              </Button>
             </div>
           </div>
         </div>
@@ -852,67 +799,15 @@ const POSDetails = () => {
               Product <span className="text-gradient">Screenshots</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Explore multiple parts of the POS at a glance. All screenshots are from the live product.
+              Explore Cuetronix on cuetronix.com — start your 14-day free trial to see every module live.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[ 
-              { src: posDashboard, alt: "Dashboard" },
-              { src: posSales, alt: "Sales & Checkout" },
-              { src: posStations, alt: "Stations" },
-              { src: posProducts, alt: "Products" },
-              { src: posCustomers, alt: "Customers" },
-              { src: posReports, alt: "Reports" },
-              { src: posBookings, alt: "Bookings" },
-              { src: posStaff, alt: "Staff" },
-            ].map((shot, i) => (
-              <div key={i} className="relative rounded-xl overflow-hidden border border-primary/30 bg-card/40 group animate-fade-in-up" style={{ animationDelay: `${i * 0.05}s` }}>
-                <img src={shot.src} alt={shot.alt} className="w-full h-auto group-hover:scale-105 transition-transform duration-500" />
-                <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-background/80 to-transparent">
-                  <div className="inline-block px-3 py-1 rounded-full bg-primary/15 border border-primary/30 text-xs font-semibold text-primary">
-                    {shot.alt}
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="max-w-lg mx-auto text-center p-8 rounded-2xl border border-primary/30 card-gradient">
+            <img src={cuetronixLogo} alt="Cuetronix" className="w-full h-auto mb-6" />
+            <TrialCTA className="w-full" label="Start Free Trial on Cuetronix" />
           </div>
         </div>
       </section>
-
-      {/* Demo Dialog */}
-      <Dialog open={demoDialogOpen} onOpenChange={(open) => {
-        if (!open) {
-          handleDialogClose();
-        }
-      }}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-center">Demo Access Required</DialogTitle>
-            <DialogDescription className="text-center pt-2 text-base">
-              Please reach out to the sales team <span className="font-semibold">8637625155</span> to get access for the demo.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="py-4">
-            <div className="flex items-center justify-center gap-3 p-4 rounded-lg bg-primary/10 border border-primary/30">
-              <Phone className="w-5 h-5 text-primary" />
-              <a 
-                href="tel:8637625155" 
-                className="text-lg font-semibold text-primary hover:underline"
-              >
-                8637625155
-              </a>
-            </div>
-          </div>
-          <DialogFooter className="sm:justify-center">
-            <Button
-              onClick={handleDialogClose}
-              className="w-full sm:w-auto bg-gradient-to-r from-primary to-secondary hover:opacity-90"
-            >
-              Go to Contact Page
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
 
       <Footer />
     </div>

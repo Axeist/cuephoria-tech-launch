@@ -1,11 +1,11 @@
-import { ArrowRight, Sparkles } from "lucide-react";
-import { useEffect, useRef, useState, lazy, Suspense } from "react";
+import { ArrowRight, ExternalLink } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/cuephoria-logo.png";
-import cuetronixLogo from "@/assets/cuetronix-logo.png";
-
-// Lazy load Spline for better performance
-const Spline = lazy(() => import('@splinetool/react-spline'));
+import CuephoriaTechLogo from "@/components/brand/CuephoriaTechLogo";
+import TrialCTA from "@/components/TrialCTA";
+import TrialBadge from "@/components/TrialBadge";
+import cuetronixLogo from "@/assets/brand/cuetronix-logo-full.png";
+import { CUETRONIX_URL } from "@/lib/cuetronix";
 
 const useCountUp = (end: number, durationMs = 1200) => {
   const [value, setValue] = useState(0);
@@ -40,211 +40,94 @@ const useCountUp = (end: number, durationMs = 1200) => {
 };
 
 const Hero = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const splineContainerRef = useRef<HTMLDivElement>(null);
+  const venuesCount = useCountUp(20);
+  const trialDaysCount = useCountUp(14);
 
-  const scrollToContact = () => {
-    const element = document.getElementById("contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+  const scrollToCuetronix = () => {
+    document.getElementById("cuetronix")?.scrollIntoView({ behavior: "smooth" });
   };
-
-  useEffect(() => {
-    // Detect mobile and optimize accordingly
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  useEffect(() => {
-    // Aggressively hide Spline watermark
-    const hideWatermark = () => {
-      // Search entire document
-      const allLinks = document.querySelectorAll('a');
-      allLinks.forEach(link => {
-        const href = link.getAttribute('href') || '';
-        const text = link.textContent || '';
-        if (href.includes('spline') || href.includes('splinetool') || 
-            text.includes('Built with') || text.includes('Made with')) {
-          (link as HTMLElement).style.cssText = 'display: none !important; visibility: hidden !important; opacity: 0 !important; position: absolute !important; left: -9999px !important; pointer-events: none !important;';
-          link.remove();
-        }
-      });
-
-      // Find and remove any divs containing Spline attribution
-      const allDivs = document.querySelectorAll('div');
-      allDivs.forEach(div => {
-        const text = div.textContent || '';
-        if (text.includes('Built with Spline') || text.includes('Made with Spline')) {
-          (div as HTMLElement).style.cssText = 'display: none !important; visibility: hidden !important; opacity: 0 !important;';
-          div.remove();
-        }
-      });
-    };
-
-    hideWatermark();
-    
-    // Use MutationObserver to catch dynamically added elements
-    const observer = new MutationObserver(() => {
-      hideWatermark();
-    });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-      attributes: false,
-    });
-
-    const interval = setInterval(hideWatermark, 100);
-    
-    return () => {
-      clearInterval(interval);
-      observer.disconnect();
-    };
-  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Spline 3D Background */}
+      <div className="absolute inset-0 z-0 saas-grid-bg" />
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-background via-background/90 to-background pointer-events-none" />
       <div className="absolute inset-0 z-0">
-        <div ref={splineContainerRef} className="absolute inset-0 w-full h-full overflow-hidden">
-          <Suspense fallback={<div className="w-full h-full bg-background" />}>
-            <div 
-              className="absolute inset-0 w-full h-full"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <div
-                className="w-full h-full"
-                style={{
-                  transform: isMobile ? 'scale(1.1) translateY(5%)' : 'scale(1)',
-                  transformOrigin: 'center center',
-                  willChange: 'transform',
-                }}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-[#8B29FF]/20 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#E028B9]/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }} />
+      </div>
+
+      <div className="container mx-auto px-4 z-10 pt-24 pb-16 relative">
+        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          <div className="space-y-8 animate-fade-in-up text-center lg:text-left">
+            <CuephoriaTechLogo size="lg" showTagline className="mx-auto lg:mx-0" />
+            <TrialBadge className="mx-auto lg:mx-0" />
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+              Technology Simplified — powered by{" "}
+              <span className="text-gradient">Cuetronix</span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0">
+              Cuephoria Tech builds venue software for gaming lounges, snooker clubs, and cafes.
+              <strong className="text-foreground"> Cuetronix</strong> is our all-in-one OS for POS,
+              online booking, billing, staff, and analytics.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center pt-2">
+              <TrialCTA size="lg" />
+              <Button
+                onClick={scrollToCuetronix}
+                size="lg"
+                variant="outline"
+                className="border-primary/60 text-foreground hover:bg-primary/10"
               >
-                <Spline 
-                  scene="https://prod.spline.design/zYbX3Qo-ZEfBiOvq/scene.splinecode"
-                  className="w-full h-full"
-                />
+                See Cuetronix
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="ghost"
+                className="text-muted-foreground hover:text-foreground"
+              >
+                <a href={CUETRONIX_URL} target="_blank" rel="noopener noreferrer">
+                  Explore cuetronix.com
+                  <ExternalLink className="ml-2 w-4 h-4" />
+                </a>
+              </Button>
+            </div>
+
+            <div className="grid grid-cols-3 gap-6 pt-8 max-w-lg mx-auto lg:mx-0">
+              <div ref={venuesCount.ref} className="text-center lg:text-left">
+                <div className="text-2xl md:text-3xl font-bold text-gradient">{venuesCount.value}+</div>
+                <div className="text-xs text-muted-foreground">Venues</div>
+              </div>
+              <div className="text-center lg:text-left">
+                <div className="text-2xl md:text-3xl font-bold text-gradient">99.9%</div>
+                <div className="text-xs text-muted-foreground">Uptime</div>
+              </div>
+              <div ref={trialDaysCount.ref} className="text-center lg:text-left">
+                <div className="text-2xl md:text-3xl font-bold text-gradient">{trialDaysCount.value}</div>
+                <div className="text-xs text-muted-foreground">Day Free Trial</div>
               </div>
             </div>
-          </Suspense>
-        </div>
-        {/* Purple theme overlay to match website aesthetic */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none" />
-        {/* Purple tint overlay to blend with theme */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 pointer-events-none" />
-      </div>
-
-      {/* Floating Elements */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }} />
-      </div>
-
-      {/* Content */}
-      <div className="container mx-auto px-4 z-10 pt-20 relative">
-        <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in-up">
-          <div className="flex items-center justify-center gap-4">
-            <div className="w-20 h-20 rounded-2xl overflow-hidden border border-primary/40 shadow-[0_0_40px_rgba(124,58,237,0.5)]">
-              <img src={logo} alt="Cuephoria Tech" className="w-full h-full object-cover" />
-            </div>
-            <div className="w-28 h-28 rounded-2xl overflow-hidden border border-primary/40 shadow-[0_0_40px_rgba(124,58,237,0.6)]">
-              <img src={cuetronixLogo} alt="Cuetronix" className="w-full h-full object-cover" />
-            </div>
-          </div>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/50 bg-primary/10 backdrop-blur-sm animate-scale-in">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm text-foreground">First Application by Cuephoria Tech</span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-            <span className="text-gradient">Cuetronix</span> — All-in-One Gaming Billing Software
-          </h1>
-
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            The world's first all-in-one gaming and sports venue operating system — POS, branded online booking with Razorpay UPI and card payments, and corporate-grade staff payroll and attendance for snooker halls, gaming lounges, turfs, and entertainment venues.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <Button
-              onClick={scrollToContact}
-              size="lg"
-              className="relative bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground group shadow-[0_0_24px_rgba(140,60,255,0.35)]"
-            >
-              <span className="relative z-10 flex items-center">Start Your Journey</span>
-              <ArrowRight className="ml-2 w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button
-              onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
-              size="lg"
-              variant="outline"
-              className="relative border-primary/60 text-foreground hover:bg-primary/10 backdrop-blur supports-[backdrop-filter]:bg-background/40"
-            >
-              <span className="flex items-center gap-2">Explore Services <ArrowRight className="w-4 h-4" /></span>
-            </Button>
-            <a
-              href="https://www.cuetronix.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/50 text-foreground hover:text-primary-foreground transition-all duration-300 hover:shadow-[0_0_28px_rgba(124,58,237,0.45)]"
-            >
-              <span className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/15 via-secondary/15 to-primary/15 opacity-0 group-hover:opacity-100 transition-opacity" />
-              <span className="relative">Try Cuetronix Free</span>
-              <ArrowRight className="w-4 h-4 relative" />
-            </a>
-            <a
-              href="/pos"
-              className="relative inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/50 text-foreground hover:text-primary-foreground transition-all duration-300 hover:shadow-[0_0_28px_rgba(124,58,237,0.45)]"
-            >
-              <span className="relative">View Features</span>
-              <ArrowRight className="w-4 h-4 relative" />
-            </a>
-          </div>
-
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-8 pt-12 max-w-5xl mx-auto">
-            {(() => { const c = useCountUp(6); return (
-            <div ref={c.ref} className="text-center animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">{c.value}+</div>
-              <div className="text-sm text-muted-foreground">Years Experience</div>
-            </div> )})()}
-            {(() => { const c = useCountUp(100); return (
-            <div ref={c.ref} className="text-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
-              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">{c.value}%</div>
-              <div className="text-sm text-muted-foreground">Client Satisfaction</div>
-            </div> )})()}
-            <div className="text-center animate-fade-in" style={{ animationDelay: "0.6s" }}>
-              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">24/7</div>
-              <div className="text-sm text-muted-foreground">Support Available</div>
+          <div className="relative animate-fade-in flex justify-center">
+            <div className="relative rounded-2xl overflow-hidden border border-primary/30 shadow-2xl neon-border p-8 md:p-12 bg-card/40 backdrop-blur-sm">
+              <img
+                src={cuetronixLogo}
+                alt="Cuetronix — All-in-One Gaming Venue OS by Cuephoria Tech"
+                className="w-full max-w-md mx-auto h-auto"
+              />
+              <p className="text-center text-sm text-muted-foreground mt-6">
+                Flagship product by Cuephoria Tech
+              </p>
             </div>
-            {(() => { const c = useCountUp(20); return (
-            <div ref={c.ref} className="text-center animate-fade-in" style={{ animationDelay: "0.8s" }}>
-              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">{c.value}+</div>
-              <div className="text-sm text-muted-foreground">Deployments</div>
-            </div> )})()}
-            {(() => { const c = useCountUp(50); return (
-            <div ref={c.ref} className="text-center animate-fade-in" style={{ animationDelay: "1s" }}>
-              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">{c.value}K+</div>
-              <div className="text-sm text-muted-foreground">Tx/day Capacity</div>
-            </div> )})()}
-            {(() => { const c = useCountUp(10); return (
-            <div ref={c.ref} className="text-center animate-fade-in" style={{ animationDelay: "1.2s" }}>
-              <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">{c.value}+</div>
-              <div className="text-sm text-muted-foreground">Cities Served</div>
-            </div> )})()}
           </div>
         </div>
       </div>
 
-      {/* Bottom Gradient */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-0" />
     </section>
   );

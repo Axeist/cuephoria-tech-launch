@@ -1203,5 +1203,13 @@ Ready to build a loyal customer base? Cuetronix by Cuephoria Tech helps you impl
       }
     ]
   }
-];
+].map((post) => ({
+  ...post,
+  excerpt: `${post.excerpt} Try Cuetronix with a 14-day free trial — no auto-pay mandate.`,
+  content: `${post.content.trim()}
+
+---
+
+**Try Cuetronix free for 14 days** — the all-in-one venue OS by Cuephoria Tech (POS, booking, billing, staff & analytics). We never auto-charge when your trial ends. [Start your free trial at cuetronix.com](https://www.cuetronix.com).`,
+}));
 
